@@ -5,6 +5,18 @@ const quizSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    questions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Question"
+    }],
+    shuffleQuestions: {
+        type: Boolean,
+        default: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
     course: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Course"
@@ -28,9 +40,15 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    options: {
-        type: [String]
-    },
+    type: [{
+        type: String,
+        enum: ["multiple_choice", "numerical", "true_false", "matching", "short_answer"],
+        required: true
+    }],
+    options: [{
+        text: String,
+        isCorrect: Boolean
+    }],
     correctAnswer: {
         type: Number
     },
@@ -61,8 +79,6 @@ const attemptSchema = new mongoose.Schema({
     }
 });
 
-const Quiz = new mongoose.model("Quiz", quizSchema);
-const Question = new mongoose.model("Question", questionSchema);
-const Attempt = new mongoose.model("Attempt", attemptSchema);
-
-export default { Quiz, Question, Attempt };
+export const Quiz = new mongoose.model("Quiz", quizSchema);
+export const Question = new mongoose.model("Question", questionSchema);
+export const Attempt = new mongoose.model("Attempt", attemptSchema);

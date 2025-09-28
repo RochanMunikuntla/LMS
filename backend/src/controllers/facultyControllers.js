@@ -1,8 +1,12 @@
 import bcrypt from "bcryptjs";
-import {Faculty} from "../models/user.js";
+import { Faculty } from "../models/user.js";
 import Assignment from "../models/assignment.js";
-import Quiz from "../models/quiz.js";
-import Attempt from "../models/quiz.js";
+import { Quiz } from "../models/quiz.js";
+import { Attempt } from "../models/quiz.js";
+import { parseGIFT } from "../utils/giftParser.js";
+import { Question } from "../models/quiz.js";
+import Announcement from "../models/announcement.js";
+import fs from "fs";
 
 
 // backend logic controllers
@@ -32,6 +36,8 @@ export const authFaculty = async (req, res) => {
     }
 }
 
+//Assignment
+
 export const createAssignment = async (req, res) => {
     try {
         const { title, description, dueDate, courseId } = req.body;
@@ -60,14 +66,16 @@ export const editAssignment = async (req, res) => {
 export const removeAssignment = async (req, res) => {
     try {
         const assignment = await Assignment.findById(req.params.id);
-        if (!assignment) return res.status(404).json({ message: "Assignment not found" });
+        if (!assignment) {
+            return res.status(404).json({ message: "Assignment not found" });
+        }
         await Assignment.deleteOne({ assignment });
+        res.status(200).json({ message: "Assignment removed" });
     } catch (error) {
         console.log("Error: ", error);
     }
 }
 
-// File based assignments(not for quizzes!!!)
 export const gradeAssignment = async (req, res) => {
     try {
         const { grade } = req.body;
@@ -81,7 +89,62 @@ export const gradeAssignment = async (req, res) => {
     }
 }
 
-//This is for quizzes!!!
+//Quiz
+
+export const uploadQuestions = async (req, res) => {
+    try {
+        const filePath = req.file.path;
+        const content = fs.readFileSync(filePath, "utf8");
+        const questions = parseGIFT(content);
+
+        const savedQuestions = await Question.insertMany(questions);
+
+        res.json({ message: "Questions imported", count: savedQuestions.length });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Failed to import GIFT file", error: err.message });
+    }
+}
+
+export const deleteQuestions = async (req, res) => {
+    try {
+        await Question.deleteMany();
+        return res.status(200).json({message: "Deleted questions"});
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const createQuiz = async (req, res) => {
+  try {
+    const { name, questionIds, shuffleQuestions, courseId } = req.body;
+
+    if (!name || !questionIds || !Array.isArray(questionIds) || questionIds.length === 0) {
+      return res.status(400).json({ message: "Quiz name and at least one question are required." });
+    }
+
+    const validQuestions = await Question.find({ _id: { $in: questionIds } });
+    if (validQuestions.length !== questionIds.length) {
+      return res.status(400).json({ message: "Some questions are invalid." });
+    }
+
+    const quiz = new Quiz({
+      title: name,
+      questions: questionIds,
+      shuffleQuestions: shuffleQuestions || false,
+      course: courseId || null, 
+      published: false
+    });
+
+    await quiz.save();
+
+    res.status(201).json({ message: "Quiz created successfully!", quiz });
+  } catch (err) {
+    console.error("Error creating quiz:", err);
+    res.status(500).json({ message: "Failed to create quiz", error: err.message });
+  }
+};
+
 export const submitQuiz = async (req, res) => {
     try {
         const { quizId, answers } = req.body;
@@ -141,9 +204,58 @@ export const profile = (req, res) => {
     }
 }
 
-export const assignments = (req, res) => {
+export const getAllAssignments = async (req, res) => {
     try {
-        res.send("assignments");
+        const assignments = await Assignment.find();
+        res.json({ message: assignments });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAssignment = async (req, res) => {
+    try {
+        const assignment = await Assignment.findById(req.params.id);
+        res.json({ message: assignment });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getQues = async (req, res) => {
+    try {
+        const ques = await Question.findById(req.params.id);
+        res.json({message: ques});
+    } catch (error) {
+        
+    }
+}
+
+export const getQuiz = async (req, res) => {
+    try {
+        const quiz = await Quiz.findById(req.params.id).populate({
+                path: "questions",
+                select: "-__v" 
+            });;
+        res.json({message: quiz.questions});
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAllAnnouncements = async(req, res) => {
+    try {
+        const announcements = await Announcement.find();
+        res.json({message:announcements});
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAnnouncement = async (req, res) => {
+    try {
+        const announcement = await Announcement.findById(req.params.id);
+        res.json({message: announcement});
     } catch (error) {
         console.log("Error: ", error);
     }

@@ -5,7 +5,11 @@ const departmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    name: {
+    deptName: {
+        type: String,
+        required: true
+    },
+    email: {
         type: String,
         required: true
     },
@@ -16,7 +20,15 @@ const departmentSchema = new mongoose.Schema({
     faculty: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Faculty"
-    }]
+    }],
+    courses: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Courses"
+    }],
+    HoD: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Faculty"
+    }
 });
 
 const Department = mongoose.model("Department", departmentSchema)

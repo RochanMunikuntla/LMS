@@ -1,0 +1,53 @@
+::Q1:: What does DBMS stand for? {
+    =Database Management System
+    ~Data Base Managing Service
+    ~Data Backup Management Software
+    ~None of the above
+}
+
+::Q2:: Which SQL command is used to extract data? {
+    =SELECT
+    ~EXTRACT
+    ~GET
+    ~OPEN
+}
+
+::Q3:: Which of the following is NOT a NoSQL database? {
+    =MySQL
+    ~MongoDB
+    ~Cassandra
+    ~Redis
+}
+
+::Q4:: In C++, which keyword is used to define a class? {
+    =class
+    ~struct
+    ~define
+    ~object
+}
+
+::Q5:: Which of these is a JavaScript framework? {
+    =React
+    ~Django
+    ~Flask
+    ~Laravel
+}
+
+::Q6:: TCP is a connection-oriented protocol. {T}
+::Q7:: HTML stands for HyperText Markup Language. {T}
+::Q8:: In DBMS, a primary key can have duplicate values. {F}
+::Q9:: CSS is used for backend logic. {F}
+::Q10:: Git is a version control system. {T}
+
+::Q11:: Who developed the Python programming language? {=Guido van Rossum}
+::Q12:: Which company developed the C programming language? {=Bell Labs}
+::Q13:: Which query is used to remove all rows from a table in SQL but keep the table structure? {=TRUNCATE}
+::Q14:: Which algorithm is used for shortest path in graphs? {=Dijkstra}
+::Q15:: Name one NoSQL database. {=MongoDB =Cassandra =Redis =CouchDB}
+
+::Q16:: What is 2+2? {#4}
+::Q17:: Convert 16 (decimal) to binary. {#10000}
+::Q18:: What is the decimal (base-10) equivalent of the binary (base-2) number 1011? {#11}
+::Q19::If 1 byte is equal to 8 bits, how many bits are in 5 bytes? {#40}
+::Q20:: What port does HTTP use by default? {#80}
+

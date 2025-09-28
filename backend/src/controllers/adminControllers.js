@@ -1,10 +1,11 @@
 import bcrypt from "bcryptjs";
+import XLSX from "xlsx";
 import { Admin } from "../models/user.js";
+import { Faculty } from "../models/user.js";
 import { Student } from "../models/user.js";
 import Course from "../models/course.js";
-import { Faculty } from "../models/user.js";
 import Department from "../models/department.js";
-import XLSX from "xlsx";
+import Announcement from "../models/announcement.js";
 
 // backend logic controllers
 
@@ -26,7 +27,7 @@ export const createAdmin = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const authAdmin = async (req, res) => {
     try {
@@ -50,23 +51,66 @@ export const authAdmin = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 //Department
 
 export const createDept = async (req, res) => {
     try {
-        const { deptId, name } = req.body;
+        const { deptId, deptName, email } = req.body;
         const exisitingDept = await Department.findOne({ deptId })
         if (exisitingDept) {
             return res.status(400).json({ message: "Department already exists" });
         }
-        const dept = new Department({ deptId, name });
+        const dept = new Department({ deptId, deptName, email });
         await dept.save();
+        res.json({ message: "Created Department" });
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
+
+export const editDept = async (req, res) => {
+    try {
+        const deptId = req.params.id;
+        const { name, email, HoD } = req.body;
+        const dept = await Department.findById(deptId);
+        if (!dept) {
+            return res.status(400).json({ message: "Department not found" });
+        }
+        dept.name = name || dept.name;
+        dept.email = email || dept.email;
+
+        if (HoD) {
+            const faculty = await Faculty.findOne({ name: HoD });
+            if (!faculty) {
+                return res.status(400).json({ message: "Faculty does not exist" });
+            }
+            dept.HoD = faculty._id;
+        }
+        await dept.save();
+        res.json({ message: "Updated Department" });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+};
+
+export const removeDept = async (req, res) => {
+    try {
+        const deptId = req.params.id;
+
+        const dept = await Department.findById(deptId);
+        if (!dept) {
+            return res.status(404).json({ message: "Department not found" });
+        }
+
+        await Department.deleteOne({ _id: deptId });
+        res.status(200).json({ message: "Department deleted successfully" });
+    } catch (error) {
+        console.error("Error deleting department:", error);
+        res.status(500).json({ message: "Server error", error: error.message });
+    }
+};
 
 //Course
 
@@ -88,7 +132,7 @@ export const createCourse = async (req, res) => {
         console.log("Error: ", error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
-}
+};
 
 export const editCourse = async (req, res) => {
     try {
@@ -108,11 +152,11 @@ export const editCourse = async (req, res) => {
             course.department = dept._id;
         }
         await course.save();
-        res.json({message: "Course Updated!"})
+        res.json({ message: "Course Updated!" })
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const removeCourse = async (req, res) => {
     try {
@@ -122,11 +166,11 @@ export const removeCourse = async (req, res) => {
             return res.status(400).json({ message: "Course does not exist" });
         }
         await Course.deleteOne({ courseId });
-        res.json({message: "Course Deleted!"});
+        res.json({ message: "Course Deleted!" });
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 //Student
 
@@ -220,7 +264,7 @@ export const updateStudent = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const removeStudent = async (req, res) => {
     try {
@@ -234,7 +278,7 @@ export const removeStudent = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 //Faculty
 
@@ -257,9 +301,9 @@ export const addFaculty = async (req, res) => {
         if (!rows.length) return res.status(400).json({ message: "Excel file is empty" });
 
         const deptNames = [...new Set(rows.map(r => r.department))];
-        const departments = await Department.find({ name: { $in: deptNames } });
+        const departments = await Department.find({ deptName: { $in: deptNames } });
         const deptMap = {};
-        departments.forEach(d => { deptMap[d.name] = d._id; });
+        departments.forEach(d => { deptMap[d.deptName] = d._id; });
 
         const facultyUpsertOps = [];
         const departmentFacultyMap = new Map();
@@ -340,7 +384,7 @@ export const updateFaculty = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const removeFaculty = async (req, res) => {
     try {
@@ -355,7 +399,59 @@ export const removeFaculty = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
+
+//Announcement
+
+export const postAnnouncement = async (req, res) => {
+    try {
+        const { title, description } = req.body;
+        const announcement = new Announcement({ title, description });
+        await announcement.save();
+        res.json({ message: "Announcement posted", announcement });
+    } catch (error) {
+        console.error("Error posting announcement:", error);
+        res.status(500).json({ message: "Failed to post announcement", error: error.message });
+    }
+};
+
+export const editAnnouncement = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { title, description } = req.body;
+
+        const announcement = await Announcement.findById(id);
+        if (!announcement) {
+            return res.status(404).json({ message: "Announcement not found" });
+        }
+
+        if (title) announcement.title = title;
+        if (description) announcement.description = description;
+
+        await announcement.save();
+        res.json({ message: "Announcement updated", announcement });
+    } catch (error) {
+        console.error("Error editing announcement:", error);
+        res.status(500).json({ message: "Failed to update announcement", error: error.message });
+    }
+};
+
+export const deleteAnnouncement = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const announcement = await Announcement.findById(id);
+        if (!announcement) {
+            return res.status(404).json({ message: "Announcement not found" });
+        }
+
+        await announcement.deleteOne();
+        res.json({ message: "Announcement deleted" });
+    } catch (error) {
+        console.error("Error deleting announcement:", error);
+        res.status(500).json({ message: "Failed to delete announcement", error: error.message });
+    }
+};
 
 
 
@@ -368,7 +464,7 @@ export const home = (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const login = async (req, res) => {
     try {
@@ -376,7 +472,7 @@ export const login = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const profile = (req, res) => {
     try {
@@ -384,7 +480,7 @@ export const profile = (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const getAllStudents = async (req, res) => {
     try {
@@ -393,7 +489,7 @@ export const getAllStudents = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const getStudent = async (req, res) => {
     try {
@@ -402,7 +498,7 @@ export const getStudent = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const getAllFaculty = async (req, res) => {
     try {
@@ -411,7 +507,7 @@ export const getAllFaculty = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const getFaculty = async (req, res) => {
     try {
@@ -420,21 +516,57 @@ export const getFaculty = async (req, res) => {
     } catch (error) {
         console.log("Error: ", error);
     }
-}
+};
 
 export const getAllCourses = async (req, res) => {
     try {
         const courses = await Course.find();
-        res.json({message: courses})
+        res.json({ message: courses })
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+};
+
+export const getCourse = async (req, res) => {
+    try {
+        const course = await Course.findById(req.params.id);
+        res.json({ message: course });
     } catch (error) {
         console.log("Error: ", error);
     }
 }
 
-export const getCourse = async (req, res) => {
+export const getAllDept = async (req, res) => {
     try {
-        const course = await Course.findById(req.params.id);
-        res.json({message:course});
+        const dept = await Department.find();
+        res.json({ message: dept });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getDept = async (req, res) => {
+    try {
+        const dept = await Department.findById(req.params.id);
+        res.json({ message: dept });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAllAnnouncements = async(req, res) => {
+    try {
+        const announcements = await Announcement.find();
+        res.json({message:announcements});
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAnnouncement = async (req, res) => {
+    try {
+        const announcement = await Announcement.findById(req.params.id);
+        res.json({message: announcement});
     } catch (error) {
         console.log("Error: ", error);
     }
