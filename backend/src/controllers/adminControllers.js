@@ -6,6 +6,8 @@ import { Student } from "../models/user.js";
 import Course from "../models/course.js";
 import Department from "../models/department.js";
 import Announcement from "../models/announcement.js";
+import { Internship } from "../models/opportunities.js";
+import { Job } from "../models/opportunities.js";
 
 // backend logic controllers
 
@@ -453,6 +455,106 @@ export const deleteAnnouncement = async (req, res) => {
     }
 };
 
+//Career
+
+//Internship
+export const postInternship = async (req, res) => {
+    try {
+        const { title, company, description, location, stipend, duration } = req.body;
+        const internship = new Internship({ title, company, description, location, stipend, duration });
+        await internship.save();
+        res.json({ message: "Posted Internship" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
+export const editInternship = async (req, res) => {
+    try {
+        const { title, company, description, location, stipend, duration } = req.body;
+        const internship = await Internship.findById(req.params.id);
+
+        internship.title = title || internship.title;
+        internship.company = company || internship.company;
+        internship.description = description || internship.description;
+        internship.location = location || internship.location;
+        internship.stipend = stipend || internship.stipend;
+        internship.duration = duration || internship.duration;
+
+        await internship.save();
+        res.json({ message: "Updated Internship" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
+export const deleteInternship = async (req, res) => {
+    try {
+        const internship = await Internship.findById(req.params.id);
+
+        if (!internship) {
+            return res.json({ message: "No internship found" });
+        }
+
+        await internship.deleteOne();
+        res.json({ message: "Deleted Internship" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
+//Job
+export const postJob = async (req, res) => {
+    try {
+        const { title, company, description, location, salary, experience } = req.body;
+        const job = new Job({ title, company, description, location, salary, experience });
+        await job.save();
+        res.json({ message: "Posted Job" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
+export const editJob = async (req, res) => {
+    try {
+        const { title, company, description, location, salary, experience } = req.body;
+        const job = await Job.findById(req.params.id);
+
+        job.title = title || job.title;
+        job.company = company || job.company;
+        job.description = description || job.description;
+        job.location = location || job.location;
+        job.salary = salary || job.salary;
+        job.experience = experience || job.experience;
+
+        await job.save();
+        res.json({ message: "Updated Job" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
+export const deleteJob = async (req, res) => {
+    try {
+        const job = await Job.findById(req.params.id);
+
+        if (!job) {
+            return res.json({ message: "No job found" });
+        }
+
+        await job.deleteOne();
+        res.json({ message: "Deleted Job" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Error: ", error });
+    }
+}
+
 
 
 
@@ -554,10 +656,10 @@ export const getDept = async (req, res) => {
     }
 }
 
-export const getAllAnnouncements = async(req, res) => {
+export const getAllAnnouncements = async (req, res) => {
     try {
         const announcements = await Announcement.find();
-        res.json({message:announcements});
+        res.json({ message: announcements });
     } catch (error) {
         console.log("Error: ", error);
     }
@@ -566,7 +668,43 @@ export const getAllAnnouncements = async(req, res) => {
 export const getAnnouncement = async (req, res) => {
     try {
         const announcement = await Announcement.findById(req.params.id);
-        res.json({message: announcement});
+        res.json({ message: announcement });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAllInternships = async (req, res) => {
+    try {
+        const internships = await Internship.find();
+        res.json({ message: internships });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getInternship = async (req, res) => {
+    try {
+        const internship = await Internship.findById(req.params.id);
+        res.json({ message: internship })
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getAllJobs = async (req, res) => {
+    try {
+        const jobs = await Job.find();
+        res.json({ message: jobs });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getJob = async (req, res) => {
+    try {
+        const job = await Job.findById(req.params.id);
+        res.json({ message: job })
     } catch (error) {
         console.log("Error: ", error);
     }

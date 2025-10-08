@@ -1,5 +1,5 @@
 import express from "express";
-import { home, profile, createAdmin, login, authAdmin, addStudent, addFaculty, updateStudent, updateFaculty, removeStudent, removeFaculty, createCourse, editCourse, removeCourse, getAllStudents, getStudent, getAllFaculty, getFaculty, getCourse, getAllCourses, createDept, editDept, getAllDept, getDept, removeDept } from "../controllers/adminControllers.js";
+import { home, profile, createAdmin, login, authAdmin, addStudent, addFaculty, updateStudent, updateFaculty, removeStudent, removeFaculty, createCourse, editCourse, removeCourse, getAllStudents, getStudent, getAllFaculty, getFaculty, getCourse, getAllCourses, createDept, editDept, getAllDept, getDept, removeDept, getAllInternships, getInternship, postInternship, editInternship, deleteInternship, getAllJobs, getJob, postJob, editJob, deleteJob } from "../controllers/adminControllers.js";
 import { requireLogin } from "../middleware/authMiddleware.js";
 import upload from "../middleware/fileMiddleware.js";
 import { requireRole } from "../middleware/roleMiddleware.js";
@@ -50,5 +50,20 @@ router.get("/announcements/:id", getAnnouncement);
 router.post("/announcements", postAnnouncement);
 router.put("/announcements/:id", editAnnouncement);
 router.delete("/announcements/:id", deleteAnnouncement);
+
+//Career
+
+//Internships(done)
+router.get("/career/internships", getAllInternships);
+router.get("/career/internships/:id", getInternship);
+router.post("/career/internships", postInternship);
+router.put("/career/internships/:id", editInternship);
+router.delete("/career/internships/:id", deleteInternship);
+//Jobs(done)
+router.get("/career/jobs", getAllJobs);
+router.get("/career/jobs/:id", getJob);
+router.post("/career/jobs", postJob);
+router.put("/career/jobs/:id", editJob);
+router.delete("/career/jobs/:id", deleteJob);
 
 export default router;
