@@ -7,6 +7,8 @@ import { parseGIFT } from "../utils/giftParser.js";
 import { Question } from "../models/quiz.js";
 import Announcement from "../models/announcement.js";
 import fs from "fs";
+import Material from "../models/materials.js";
+import { triggerAsyncId } from "async_hooks";
 
 
 // backend logic controllers
@@ -109,40 +111,40 @@ export const uploadQuestions = async (req, res) => {
 export const deleteQuestions = async (req, res) => {
     try {
         await Question.deleteMany();
-        return res.status(200).json({message: "Deleted questions"});
+        return res.status(200).json({ message: "Deleted questions" });
     } catch (error) {
         console.log("Error: ", error);
     }
 }
 
 export const createQuiz = async (req, res) => {
-  try {
-    const { name, questionIds, shuffleQuestions, courseId } = req.body;
+    try {
+        const { name, questionIds, shuffleQuestions, courseId } = req.body;
 
-    if (!name || !questionIds || !Array.isArray(questionIds) || questionIds.length === 0) {
-      return res.status(400).json({ message: "Quiz name and at least one question are required." });
+        if (!name || !questionIds || !Array.isArray(questionIds) || questionIds.length === 0) {
+            return res.status(400).json({ message: "Quiz name and at least one question are required." });
+        }
+
+        const validQuestions = await Question.find({ _id: { $in: questionIds } });
+        if (validQuestions.length !== questionIds.length) {
+            return res.status(400).json({ message: "Some questions are invalid." });
+        }
+
+        const quiz = new Quiz({
+            title: name,
+            questions: questionIds,
+            shuffleQuestions: shuffleQuestions || false,
+            course: courseId || null,
+            published: false
+        });
+
+        await quiz.save();
+
+        res.status(201).json({ message: "Quiz created successfully!", quiz });
+    } catch (err) {
+        console.error("Error creating quiz:", err);
+        res.status(500).json({ message: "Failed to create quiz", error: err.message });
     }
-
-    const validQuestions = await Question.find({ _id: { $in: questionIds } });
-    if (validQuestions.length !== questionIds.length) {
-      return res.status(400).json({ message: "Some questions are invalid." });
-    }
-
-    const quiz = new Quiz({
-      title: name,
-      questions: questionIds,
-      shuffleQuestions: shuffleQuestions || false,
-      course: courseId || null, 
-      published: false
-    });
-
-    await quiz.save();
-
-    res.status(201).json({ message: "Quiz created successfully!", quiz });
-  } catch (err) {
-    console.error("Error creating quiz:", err);
-    res.status(500).json({ message: "Failed to create quiz", error: err.message });
-  }
 };
 
 export const submitQuiz = async (req, res) => {
@@ -164,6 +166,55 @@ export const submitQuiz = async (req, res) => {
             score
         });
         res.json({ score, attempt });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send("Something went wrong");
+    }
+}
+
+//Materials
+
+export const postMaterials = async (req, res) => {
+    try {
+        const { title, type, topic, url } = req.body;
+        const { courseId } = req.params;
+        const material = new Material({ title, type, topic, url, course: courseId });
+        await material.save();
+        res.json({ message: "Material posted" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send("Something went wrong");
+    }
+}
+
+export const editMaterials = async (req, res) => {
+    try {
+        const { title, type, topic, url } = req.body;
+        const material = await Material.findById(req.params.id);
+
+        material.title = title || material.title;
+        material.type = type || material.type;
+        material.topic = topic || material.topic;
+        material.url = url || material.url;
+
+        await material.save();
+        res.json({ message: "Material Updated" });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).send("Something went wrong");
+    }
+}
+
+export const deleteMaterials = async (req, res) => {
+    try {
+        const material = await Material.findById(req.params.id);
+
+        if (!material) {
+            res.json({ message: "No material found" });
+        }
+
+        await material.deleteOne();
+        res.json({ message: "Material deleted" });
     } catch (error) {
         console.log("Error: ", error);
         res.status(500).send("Something went wrong");
@@ -225,28 +276,28 @@ export const getAssignment = async (req, res) => {
 export const getQues = async (req, res) => {
     try {
         const ques = await Question.findById(req.params.id);
-        res.json({message: ques});
+        res.json({ message: ques });
     } catch (error) {
-        
+
     }
 }
 
 export const getQuiz = async (req, res) => {
     try {
         const quiz = await Quiz.findById(req.params.id).populate({
-                path: "questions",
-                select: "-__v" 
-            });;
-        res.json({message: quiz.questions});
+            path: "questions",
+            select: "-__v"
+        });;
+        res.json({ message: quiz.questions });
     } catch (error) {
         console.log("Error: ", error);
     }
 }
 
-export const getAllAnnouncements = async(req, res) => {
+export const getAllAnnouncements = async (req, res) => {
     try {
         const announcements = await Announcement.find();
-        res.json({message:announcements});
+        res.json({ message: announcements });
     } catch (error) {
         console.log("Error: ", error);
     }
@@ -255,8 +306,31 @@ export const getAllAnnouncements = async(req, res) => {
 export const getAnnouncement = async (req, res) => {
     try {
         const announcement = await Announcement.findById(req.params.id);
-        res.json({message: announcement});
+        res.json({ message: announcement });
     } catch (error) {
         console.log("Error: ", error);
+    }
+}
+
+export const getAllMaterials = async (req, res) => {
+    try {
+        const { courseId } = req.params;
+        const materials = await Material.find({ course: courseId });
+        res.json({ message: materials });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const getMaterial = async (req, res) => {
+    try {
+        const material = await Material.findById(req.params.id);
+        if (!material) {
+            return res.status(404).json({ message: "Material not found" });
+        }
+        res.json({ material });
+    } catch (error) {
+        console.log("Error: ", error);
+        res.status(500).json({ message: "Server error", error: error.message });
     }
 }
