@@ -5,6 +5,7 @@ import adminRoutes from "./routes/adminRoutes.js";
 import session from "express-session";
 import { connectDB } from "../config/db.js";
 import MongoStore from "connect-mongo";
+import cors from "cors"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -31,9 +32,16 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/student", studentRoutes);
-app.use("/faculty", facultyRoutes);
-app.use("/admin", adminRoutes);
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN,
+    credentials: true,
+  })
+);
+
+app.use("/api/student", studentRoutes);
+app.use("/api/faculty", facultyRoutes);
+app.use("/api/admin", adminRoutes);
 
 connectDB().then(() => {
   app.listen(3000, () => {

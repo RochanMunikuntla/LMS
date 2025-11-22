@@ -16,17 +16,20 @@ const courseSchema = new mongoose.Schema({
         default: null
     },
     department: {
-        type: String,
-        default: null
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Department",
+        default: null,
+        required: true
     },
-    faculty: { 
+    faculty: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: "Faculty",
         default: null
-    },
+    }],
     studentsEnrolled: [{ 
         type: mongoose.Schema.Types.ObjectId, 
-        ref: "Student" 
+        ref: "Student" ,
+        default: null
     }]
 }, {timestamps: true});
 

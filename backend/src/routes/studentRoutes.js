@@ -1,7 +1,6 @@
 import express from "express";
-import { home, profile, login, authStudent, getAllTasks, addTask, editTask, deleteTask, getTask } from "../controllers/studentControllers.js";
+import { home, profile, login, authStudent, getAllTasks, addTask, editTask, deleteTask, getTask, getAllAnnouncements, getAnnouncement } from "../controllers/studentControllers.js";
 import { requireLogin } from "../middleware/authMiddleware.js";
-import { getAllAnnouncements, getAnnouncement } from "../controllers/facultyControllers.js";
 
 
 const router = express.Router();

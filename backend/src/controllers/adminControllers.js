@@ -114,27 +114,38 @@ export const removeDept = async (req, res) => {
     }
 };
 
+
 //Course
 
 export const createCourse = async (req, res) => {
     try {
-        const { courseId, courseName, department, credits } = req.body;
+        const { courseId, courseName, deptName, credits } = req.body;
+
         const existingCourse = await Course.findOne({ courseId });
         if (existingCourse) {
             return res.status(400).json({ message: "Course already exists" });
         }
-        const dept = await Department.findOne({ name: department });
+
+        const dept = await Department.findOne({ deptName });
         if (!dept) {
             return res.status(400).json({ message: "Department does not exist" });
         }
-        const course = new Course({ courseId, courseName, department: dept._id, credits });
+
+        const course = new Course({
+            courseId,
+            courseName,
+            department: dept._id,
+            credits
+        });
+
         await course.save();
-        res.json({ message: "Course created!", course })
+        res.status(201).json({ message: "Course created!", course });
     } catch (error) {
-        console.log("Error: ", error);
+        console.error("Error:", error);
         res.status(500).json({ message: "Server error", error: error.message });
     }
 };
+
 
 export const editCourse = async (req, res) => {
     try {
@@ -180,69 +191,67 @@ export const addStudent = async (req, res) => {
     try {
         if (!req.file) return res.status(400).json({ message: "No file uploaded" });
         const { defaultPassword } = req.body;
-
-        if (!defaultPassword) {
-            return res.status(400).json({ message: "Default password is required" });
-        }
+        if (!defaultPassword) return res.status(400).json({ message: "Default password is required" });
 
         const hashedPassword = await bcrypt.hash(defaultPassword, 12);
 
-        const filePath = req.file.path;
-        const workbook = XLSX.readFile(filePath);
+        const workbook = XLSX.readFile(req.file.path);
         const sheetName = workbook.SheetNames[0];
         const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { raw: true });
-
         if (!rows.length) return res.status(400).json({ message: "Excel file is empty" });
 
-        const deptNames = [...new Set(rows.map(r => r.department))];
-        const departments = await Department.find({ name: { $in: deptNames } });
-        const deptMap = {};
-        departments.forEach(d => { deptMap[d.name] = d._id; });
-
-        const studentsToInsert = [];
-        const departmentUpdates = {};
+        const unmatchedDepartments = new Set();
 
         for (const row of rows) {
             const { studentId, name, email, role, department, year } = row;
-            const deptId = deptMap[department];
 
-            if (!deptId) {
-                console.warn(`Department not found: ${department}, skipping student ${studentId}`);
+            // Normalize department from Excel
+            const normalizedDept = String(department).trim();
+
+            // Find department in DB, case-insensitive
+            const deptObj = await Department.findOne({ deptName: { $regex: `^${normalizedDept}$`, $options: "i" } });
+
+            if (!deptObj) {
+                console.warn(`Department not found: ${normalizedDept}, skipping student ${studentId}`);
+                unmatchedDepartments.add(normalizedDept);
                 continue;
             }
 
-            studentsToInsert.push({
-                updateOne: {
-                    filter: { studentId: String(studentId) },
-                    update: {
-                        $set: { name, email, role, department: deptId, year, password: hashedPassword }
-                    },
-                    upsert: true
-                }
-            });
-
-            if (!departmentUpdates[deptId]) departmentUpdates[deptId] = [];
-            departmentUpdates[deptId].push(String(studentId));
-        }
-
-        await Student.bulkWrite(studentsToInsert);
-
-        for (const [deptId, studentIds] of Object.entries(departmentUpdates)) {
-            const students = await Student.find({ studentId: { $in: studentIds } });
-            const studentObjectIds = students.map(s => s._id);
-
-            await Department.updateOne(
-                { _id: deptId },
-                { $addToSet: { students: { $each: studentObjectIds } } }
+            // Upsert student and get the updated document
+            const student = await Student.findOneAndUpdate(
+                { studentId: String(studentId) },
+                {
+                    $set: {
+                        name,
+                        email,
+                        role,
+                        department: deptObj._id,
+                        year,
+                        password: hashedPassword
+                    }
+                },
+                { upsert: true, new: true } // `new: true` returns the updated doc
             );
+
+            // Ensure student is added to department using MongoDB ObjectId
+            if (!deptObj.students.includes(student._id)) {
+                deptObj.students.push(student._id);
+                await deptObj.save();
+            }
         }
 
-        res.status(200).json({ message: "Bulk import successful" });
+        res.status(200).json({
+            message: "Bulk import completed",
+            unmatchedDepartments: Array.from(unmatchedDepartments)
+        });
+
     } catch (error) {
         console.error("Error: ", error);
         res.status(500).json({ message: "Bulk import failed", error: error.message });
     }
 };
+
+
 
 export const updateStudent = async (req, res) => {
     try {
@@ -281,6 +290,93 @@ export const removeStudent = async (req, res) => {
         console.log("Error: ", error);
     }
 };
+
+export const changeStudentToDept = async (req, res) => {
+    try {
+        const { newDept } = req.body;
+        const { studentId, deptId } = req.params;
+
+        const dept = await Department.findById(deptId);
+        const student = await Student.findById(studentId);
+        const newDepartment = await Department.findById(newDept);
+
+        if (!dept || !student) {
+            return res.status(404).json({ message: "Department or Student not found" });
+        }
+
+        //Removes the student from their current dept
+        dept.students.pull(studentId);
+        await dept.save();
+
+        //Updates their department
+        student.department = newDept;
+        await student.save();
+
+        //Adds the student to the new Department
+        if (!newDepartment.students.includes(studentId)) {
+            newDepartment.students.push(studentId);
+            await newDepartment.save();
+        }
+        res.json({ message: "Changed student dept successfully" });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const addStudentToCourse = async (req, res) => {
+    try {
+        const { courseId } = req.body; //courseId
+        const { id: studentId } = req.params;
+
+        const course = await Course.findById(courseId);
+        const student = await Student.findById(studentId);
+
+        if (!course || !student) {
+            res.status(404).json({ message: "Student or Course not found" });
+        }
+        //Adds student to course
+        if (!course.studentsEnrolled.includes(studentId)) {
+            course.studentsEnrolled.push(studentId);
+            await course.save();
+        }
+        //Updates student's course list
+        if (!student.coursesEnrolled.includes(courseId)) {
+            student.coursesEnrolled.push(courseId);
+            await student.save();
+        }
+        res.status(200).json({ message: "Added student to course" });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+export const removeStudentFromCourse = async (req, res) => {
+    try {
+        const { courseId } = req.body;
+        const { id: studentId } = req.params;
+
+        const course = await Course.findById(courseId);
+        const student = await Student.findById(studentId);
+
+        if (!course || !student) {
+            res.status(404).json({ message: "Course or Student not found" });
+        }
+
+        //Removes student from course
+        course.studentsEnrolled.pull(studentId);
+        await course.save();
+
+
+        //Removes course from student's course list
+        student.coursesEnrolled.pull(courseId);
+        await student.save();
+
+        res.status(200).json({ message: "Removed student from course" });
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
 
 //Faculty
 

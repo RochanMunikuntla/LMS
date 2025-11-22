@@ -8,7 +8,7 @@ import { Question } from "../models/quiz.js";
 import Announcement from "../models/announcement.js";
 import fs from "fs";
 import Material from "../models/materials.js";
-import { triggerAsyncId } from "async_hooks";
+import Course from "../models/course.js";
 
 
 // backend logic controllers
@@ -331,6 +331,20 @@ export const getMaterial = async (req, res) => {
         res.json({ material });
     } catch (error) {
         console.log("Error: ", error);
-        res.status(500).json({ message: "Server error", error: error.message });
+    }
+}
+
+export const getAllCourses = async (req, res) => {
+    try {
+        const facultyId = req.user._id;
+        
+        if(!facultyId){
+            return res.json({message : "User not authenticated"});
+        }
+
+        const coursesTeaching = await Course.find({ _id: { $in: req.user.coursesTeaching } });
+        res.json({message: coursesTeaching});
+    } catch (error) {
+        console.log("Error: ", error);
     }
 }

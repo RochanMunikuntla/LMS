@@ -1,5 +1,5 @@
 import express from "express";
-import { home, profile, login, authFaculty, getAllAssignments, createAssignment, editAssignment, removeAssignment, getAssignment, uploadQuestions, createQuiz, deleteQuestions, submitQuiz, getQuiz, getQues, getAllAnnouncements, getAnnouncement, getAllMaterials, getMaterial, postMaterials, editMaterials, deleteMaterials } from "../controllers/facultyControllers.js";
+import { home, profile, login, authFaculty, getAllAssignments, createAssignment, editAssignment, removeAssignment, getAssignment, uploadQuestions, createQuiz, deleteQuestions, submitQuiz, getQuiz, getQues, getAllAnnouncements, getAnnouncement, getAllMaterials, getMaterial, postMaterials, editMaterials, deleteMaterials, getAllCourses } from "../controllers/facultyControllers.js";
 import { requireLogin } from "../middleware/authMiddleware.js";
 import upload from "../middleware/fileMiddleware.js";
 
@@ -33,12 +33,17 @@ router.post("/quiz/submit", submitQuiz);
 router.get("/announcements", getAllAnnouncements);
 router.get("/announcements/:id", getAnnouncement);
 
-//Materials(done)
+//Courses
+router.get("/courses", getAllCourses);
+
+//Materials(testing pending)
 router.get("/course/:courseId/materials", getAllMaterials);
 router.get("/course/:courseId/materials/:materialId", getMaterial);
 router.post("/course/:courseId/materials", postMaterials);
 router.put("/course/:courseId/materials/:materialId", editMaterials);
 router.delete("/course/:courseId/materials/:materialId", deleteMaterials);
+
+
 
 
 export default router;
