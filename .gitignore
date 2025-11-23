@@ -1,0 +1,8 @@
+backend/.env
+frontend/.env
+backend/node_modules/
+backend/uploads/
+.DS_Store
+Thumbs.db
+backend/logs/
+*.log
