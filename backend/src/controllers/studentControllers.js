@@ -6,26 +6,31 @@ import Announcement from "../models/announcement.js";
 // backend logic controllers
 
 export const authStudent = async (req, res) => {
-    const { studentId, password } = req.body;
-    const student = await Student.findOne({ studentId });
-    if (!student) {
-        return res.status(400).json({ message: "Invalid Id or password" });
+    try {
+        const { studentId, password } = req.body;
+        const student = await Student.findOne({ studentId });
+        if (!student) {
+            return res.status(400).json({ message: "Invalid Id or password" });
+        }
+        const isValidPassword = await bcrypt.compare(password, student.password);
+        if (!isValidPassword) {
+            return res.status(400).json({ message: "Invalid Id or password" });
+        }
+        req.session.user = {
+            id: student._id,
+            studentId: student.studentId,
+            name: student.name,
+            email: student.email,
+            department: student.department,
+            year: student.year,
+            dob: student.dob,
+            role: "student"
+        };
+        res.json({ message: "Login successful", redirect: "/student/home" });
+    } catch (error) {
+        console.error("Error: ", error);
+        res.status(500).json({ message: "An error occurred during login" });
     }
-    const isValidPassword = await bcrypt.compare(password, student.password);
-    req.session.user = {
-        id: student._id,
-        studentId: student.studentId,
-        name: student.name,
-        email: student.email,
-        department: student.department,
-        year: student.year,
-        dob: student.dob,
-        role: "student"
-    };
-    if (!isValidPassword) {
-        return res.status(400).json({ message: "Invalid Id or password" });
-    }
-    res.redirect("/student/home");
 }
 
 

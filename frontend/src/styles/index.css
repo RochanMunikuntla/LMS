@@ -23,11 +23,11 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* don't center layout globally — let page components (e.g. .login-wrapper) handle centering */
+  display: block;
+  background-color: #242424; /* keep your background */
 }
 
 h1 {

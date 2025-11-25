@@ -17,24 +17,27 @@ export const authFaculty = async (req, res) => {
     try {
         const { facultyId, password } = req.body;
         const faculty = await Faculty.findOne({ facultyId });
-        if (!Faculty) {
+        if (!faculty) {
             return res.status(400).json({ message: "Invalid Id or password" });
         }
         const isValidPassword = await bcrypt.compare(password, faculty.password);
+        if (!isValidPassword) {
+            return res.status(400).json({ message: "Invalid Id or password" });
+        }
         req.session.user = {
             id: faculty._id,
             facultyId: faculty.facultyId,
+            
             name: faculty.name,
             doj: faculty.doj,
             email: faculty.email,
             department: faculty.department,
             role: "faculty"
         };
-        if (!isValidPassword) {
-            return res.status(400).json({ message: "Invalid Id or password" });
-        }
+        res.json({ message: "Login successful", redirect: "/faculty/home" });
     } catch (error) {
         console.log("Error: ", error);
+        res.status(500).json({ message: "An error occurred during login" });
     }
 }
 

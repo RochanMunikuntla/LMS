@@ -2,12 +2,19 @@
 
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import "./FacultyLoginForm.css"
+import "../../styles/Admin/AdminLoginForm.css";
 
-const FacultyLoginForm = () => {
+
+const getApiRoot = () => {
+  const raw = import.meta.env.VITE_API_URL || "http://localhost:3000/api"
+  const trimmed = raw.endsWith("/") ? raw.slice(0, -1) : raw
+  return trimmed.endsWith("/api") ? trimmed : `${trimmed}/api`
+}
+
+const AdminLoginForm = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    facultyId: "",
+    adminId: "",
     password: "",
   })
   const [errors, setErrors] = useState({})
@@ -31,8 +38,8 @@ const FacultyLoginForm = () => {
   const validateForm = () => {
     const newErrors = {}
 
-    if (!formData.facultyId.trim()) {
-      newErrors.facultyId = "Faculty ID is required"
+    if (!formData.adminId.trim()) {
+      newErrors.adminId = "Admin ID is required"
     }
 
     if (!formData.password) {
@@ -54,71 +61,34 @@ const FacultyLoginForm = () => {
     }
 
     setIsLoading(true)
-    setErrors({}) // Clear previous errors
+    setErrors({})
     try {
-      const apiBaseUrl = import.meta.env.VITE_API_URL || "http://localhost:3000"
-      // Remove trailing slash and ensure we have the base URL
-      const baseUrl = apiBaseUrl.endsWith('/') ? apiBaseUrl.slice(0, -1) : apiBaseUrl
-      // Check if /api is already in the base URL
-      const loginUrl = baseUrl.endsWith('/api') 
-        ? `${baseUrl}/faculty/login` 
-        : `${baseUrl}/api/faculty/login`
-      console.log("Attempting login to:", loginUrl)
-      console.log("Request body:", { facultyId: formData.facultyId, password: "***" })
-      
-      const response = await fetch(loginUrl, {
+      const apiRoot = getApiRoot()
+      const response = await fetch(`${apiRoot}/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include", // Important for session-based auth
+        credentials: "include",
         body: JSON.stringify({
-          facultyId: formData.facultyId,
+          adminId: formData.adminId,
           password: formData.password,
         }),
       })
 
-      // Check if response is ok before trying to parse JSON
-      if (!response.ok) {
-        // Try to parse error message
-        let errorMessage = "Login failed"
-        try {
-          const errorData = await response.json()
-          errorMessage = errorData.message || errorMessage
-        } catch {
-          // If response is not JSON, use status text
-          if (response.status === 404) {
-            errorMessage = "API endpoint not found. Please check if the backend server is running and the route is correct."
-          } else {
-            errorMessage = response.statusText || `Error ${response.status}: Login failed`
-          }
-        }
-        console.error("Login failed:", response.status, errorMessage)
-        setErrors({ submit: errorMessage })
-        return
-      }
+      const data = await response.json()
 
-      // Parse successful response
-      let data
-      try {
-        data = await response.json()
-      } catch {
-        // If response is not JSON but status is ok, still redirect
-        console.warn("Response is not JSON, but status is OK")
-        navigate("/faculty/home")
-        return
+      if (response.ok) {
+        navigate("/admin/dashboard")
+      } else {
+        setErrors({ submit: data.message || "Login failed" })
       }
-
-      console.log("Login successful:", data)
-      // Redirect to faculty home page
-      navigate("/faculty/home")
     } catch (error) {
       console.error("Login error:", error)
-      // Provide more specific error messages
-      if (error.message.includes("Failed to fetch") || error.message.includes("NetworkError")) {
-        setErrors({ submit: "Cannot connect to server. Please check if the backend is running." })
+      if (error.message.includes("Failed to fetch")) {
+        setErrors({ submit: "Cannot reach server. Please ensure the backend is running." })
       } else {
-        setErrors({ submit: error.message || "An error occurred. Please try again." })
+        setErrors({ submit: "An error occurred. Please try again." })
       }
     } finally {
       setIsLoading(false)
@@ -126,35 +96,35 @@ const FacultyLoginForm = () => {
   }
 
   return (
-    <div className="faculty-login-wrapper">
-      <div className="faculty-login-card">
+    <div className="admin-login-wrapper">
+      <div className="admin-login-card">
         {/* Header */}
-        <div className="faculty-login-header">
-          <h1>Faculty Login</h1>
-          <p>Access your faculty dashboard</p>
+        <div className="admin-login-header">
+          <h1>Admin Login</h1>
+          <p>Access admin dashboard and settings</p>
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="faculty-login-form">
-          {/* Faculty ID Field */}
+        <form onSubmit={handleSubmit} className="admin-login-form">
+          {/* Admin ID/Email Field */}
           <div className="form-group">
-            <label htmlFor="facultyId" className="form-label">
-              Faculty ID
+            <label htmlFor="adminId" className="form-label">
+              Admin ID
             </label>
             <div className="input-wrapper">
               <span className="input-icon mail-icon">✉</span>
               <input
-                id="facultyId"
+                id="adminId"
                 type="text"
-                name="facultyId"
-                placeholder="Enter your faculty ID"
-                value={formData.facultyId}
+                name="adminId"
+                placeholder="Enter your admin ID"
+                value={formData.adminId}
                 onChange={handleInputChange}
-                className={`form-input ${errors.facultyId ? "error" : ""}`}
+                className={`form-input ${errors.adminId ? "error" : ""}`}
                 disabled={isLoading}
               />
             </div>
-            {errors.facultyId && <span className="error-text">{errors.facultyId}</span>}
+            {errors.adminId && <span className="error-text">{errors.adminId}</span>}
           </div>
 
           {/* Password Field */}
@@ -219,4 +189,4 @@ const FacultyLoginForm = () => {
   )
 }
 
-export default FacultyLoginForm
+export default AdminLoginForm

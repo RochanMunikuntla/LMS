@@ -1,0 +1,220 @@
+/* Dark Theme Variables */
+:root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a1;
+    --border-color: #333333;
+    --accent-primary: #ef4444;
+    --accent-hover: #dc2626;
+    --success-color: #10b981;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", sans-serif;
+  }
+  
+  .admin-dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: var(--bg-primary);
+  }
+  
+  .admin-sidebar {
+    width: 250px;
+    background: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+    overflow-y: auto;
+  }
+  
+  .sidebar-header {
+    padding: 0 1.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+  }
+  
+  .sidebar-header h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+  }
+  
+  .sidebar-header p {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+  }
+  
+  .sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0 1rem;
+  }
+  
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+  
+  .nav-item:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+  }
+  
+  .nav-item.active {
+    background: var(--accent-primary);
+    color: white;
+  }
+  
+  .nav-icon {
+    font-size: 1.25rem;
+  }
+  
+  .sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .logout-button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+  }
+  
+  .logout-button:hover {
+    background: var(--accent-primary);
+    color: white;
+    border-color: var(--accent-primary);
+  }
+  
+  .admin-main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .dashboard-header {
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .dashboard-header h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+  
+  .header-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  .admin-name {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+  
+  .dashboard-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+  }
+  
+  .bulk-upload-card {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+  }
+  
+  .bulk-upload-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .bulk-subtitle {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.75rem;
+  }
+  
+  .bulk-inputs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+  }
+  
+  .bulk-inputs input[type="file"] {
+    flex: 1 1 220px;
+  }
+  
+  .bulk-inputs input[type="password"],
+  .bulk-inputs input[type="text"] {
+    flex: 1 1 180px;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .admin-dashboard-wrapper {
+      flex-direction: column;
+    }
+  
+    .admin-sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+      padding: 1rem;
+    }
+  
+    .sidebar-nav {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 0.5rem;
+    }
+  
+    .sidebar-footer {
+      display: none;
+    }
+  }
+  

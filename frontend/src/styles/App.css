@@ -1,8 +1,10 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  min-height: 100vh;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;          /* remove the large page padding */
+  text-align: center;  /* ok for headings inside cards */
+  /* remove display:flex / align-items / justify-content so wrapper CSS controls centering */
+  display: block;
 }
-
-

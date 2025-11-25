@@ -1,0 +1,61 @@
+:root {
+    --bg-primary: #0f0f0f;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #242424;
+    --text-primary: #ffffff;
+    --text-secondary: #a1a1a1;
+    --border-color: #333333;
+    --accent-primary: #ef4444;
+    --accent-hover: #dc2626;
+    --success-color: #10b981;
+  }
+  
+  .announcements-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .announcement-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .announcement-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.1);
+  }
+  
+  .announcement-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 1rem;
+  }
+  
+  .announcement-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  
+  .announcement-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .announcement-description {
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+  }
+  
+  .announcement-content {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  

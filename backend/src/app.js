@@ -34,10 +34,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,
+    origin: process.env.CLIENT_ORIGIN || "http://localhost:5173", // Default to Vite dev server
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
+// Log all API requests for debugging
+app.use("/api", (req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`, req.headers.origin || 'no origin');
+  next();
+});
 
 app.use("/api/student", studentRoutes);
 app.use("/api/faculty", facultyRoutes);

@@ -189,6 +189,40 @@ export const removeCourse = async (req, res) => {
 
 export const addStudent = async (req, res) => {
     try {
+        const { studentId, name, email, department, year, password } = req.body;
+        if (!studentId || !name || !email || !department || !password) {
+            return res.status(400).json({ message: "studentId, name, email, department and password are required" });
+        }
+
+        const existingStudent = await Student.findOne({ studentId });
+        if (existingStudent) {
+            return res.status(400).json({ message: "Student already exists" });
+        }
+
+        const dept = await Department.findOne({ deptName: department });
+        if (!dept) {
+            return res.status(400).json({ message: "Department does not exist" });
+        }
+
+        const student = await Student.create({
+            studentId,
+            name,
+            email,
+            department: dept._id,
+            year: year || 1,
+            password,
+            role: "student"
+        });
+
+        res.status(201).json({ message: "Student created", student });
+    } catch (error) {
+        console.error("Error adding student:", error);
+        res.status(500).json({ message: "Failed to add student", error: error.message });
+    }
+};
+
+export const importStudents = async (req, res) => {
+    try {
         if (!req.file) return res.status(400).json({ message: "No file uploaded" });
         const { defaultPassword } = req.body;
         if (!defaultPassword) return res.status(400).json({ message: "Default password is required" });
@@ -205,10 +239,8 @@ export const addStudent = async (req, res) => {
         for (const row of rows) {
             const { studentId, name, email, role, department, year } = row;
 
-            // Normalize department from Excel
             const normalizedDept = String(department).trim();
 
-            // Find department in DB, case-insensitive
             const deptObj = await Department.findOne({ deptName: { $regex: `^${normalizedDept}$`, $options: "i" } });
 
             if (!deptObj) {
@@ -217,23 +249,21 @@ export const addStudent = async (req, res) => {
                 continue;
             }
 
-            // Upsert student and get the updated document
             const student = await Student.findOneAndUpdate(
                 { studentId: String(studentId) },
                 {
                     $set: {
                         name,
                         email,
-                        role,
+                        role: role || "student",
                         department: deptObj._id,
                         year,
                         password: hashedPassword
                     }
                 },
-                { upsert: true, new: true } // `new: true` returns the updated doc
+                { upsert: true, new: true }
             );
 
-            // Ensure student is added to department using MongoDB ObjectId
             if (!deptObj.students.includes(student._id)) {
                 deptObj.students.push(student._id);
                 await deptObj.save();
@@ -255,16 +285,17 @@ export const addStudent = async (req, res) => {
 
 export const updateStudent = async (req, res) => {
     try {
-        const { studentId, name, department, email } = req.body;
-        const student = await Student.findOne({ studentId });
+        const { name, department, email, year } = req.body;
+        const student = await Student.findById(req.params.id);
         if (!student) {
-            return res.status(400).json({ message: "Student does not exist" });
+            return res.status(404).json({ message: "Student not found" });
         }
         student.name = name || student.name;
         student.email = email || student.email;
+        student.year = year ?? student.year;
 
         if (department) {
-            const dept = await Department.findOne({ name: department });
+            const dept = await Department.findOne({ deptName: department });
             if (!dept) {
                 return res.status(400).json({ message: "Department does not exist" });
             }
@@ -274,20 +305,21 @@ export const updateStudent = async (req, res) => {
         res.status(200).json({ message: "Student updated successfully", student });
     } catch (error) {
         console.log("Error: ", error);
+        res.status(500).json({ message: "Failed to update student", error: error.message });
     }
 };
 
 export const removeStudent = async (req, res) => {
     try {
-        const { studentId } = req.body;
-        const student = await Student.find({ studentId });
+        const student = await Student.findById(req.params.id);
         if (!student) {
-            return res.status(400).json({ message: "Student does not exist" });
+            return res.status(404).json({ message: "Student does not exist" });
         }
-        await Student.deleteOne({ studentId });
-        res.json({ message: "Student deleted succesfully" });
+        await student.deleteOne();
+        res.json({ message: "Student deleted successfully" });
     } catch (error) {
         console.log("Error: ", error);
+        res.status(500).json({ message: "Failed to delete student", error: error.message });
     }
 };
 
@@ -382,6 +414,40 @@ export const removeStudentFromCourse = async (req, res) => {
 
 export const addFaculty = async (req, res) => {
     try {
+        const { facultyId, name, email, department, password, year } = req.body;
+        if (!facultyId || !name || !email || !department || !password) {
+            return res.status(400).json({ message: "facultyId, name, email, department and password are required" });
+        }
+
+        const existingFaculty = await Faculty.findOne({ facultyId });
+        if (existingFaculty) {
+            return res.status(400).json({ message: "Faculty already exists" });
+        }
+
+        const dept = await Department.findOne({ deptName: department });
+        if (!dept) {
+            return res.status(400).json({ message: "Department does not exist" });
+        }
+
+        const faculty = await Faculty.create({
+            facultyId,
+            name,
+            email,
+            department: dept._id,
+            year,
+            password,
+            role: "faculty"
+        });
+
+        res.status(201).json({ message: "Faculty added", faculty });
+    } catch (error) {
+        console.error("Error adding faculty:", error);
+        res.status(500).json({ message: "Failed to add faculty", error: error.message });
+    }
+};
+
+export const importFaculty = async (req, res) => {
+    try {
         if (!req.file) return res.status(400).json({ message: "No file uploaded" });
 
         const { defaultPassword } = req.body;
@@ -391,8 +457,7 @@ export const addFaculty = async (req, res) => {
 
         const hashedPassword = await bcrypt.hash(defaultPassword, 12);
 
-        const filePath = req.file.path;
-        const workbook = XLSX.readFile(filePath);
+        const workbook = XLSX.readFile(req.file.path);
         const sheetName = workbook.SheetNames[0];
         const rows = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], { raw: true });
 
@@ -422,7 +487,7 @@ export const addFaculty = async (req, res) => {
                 updateOne: {
                     filter: { facultyId: String(facultyId) },
                     update: {
-                        $set: { name, email, role, department: deptId, year, password: hashedPassword }
+                        $set: { name, email, role: role || "faculty", department: deptId, year, password: hashedPassword }
                     },
                     upsert: true
                 }
@@ -461,16 +526,17 @@ export const addFaculty = async (req, res) => {
 
 export const updateFaculty = async (req, res) => {
     try {
-        const { facultyId, name, department, email } = req.body;
-        const faculty = await Faculty.findOne({ facultyId });
+        const { name, department, email, year } = req.body;
+        const faculty = await Faculty.findById(req.params.id);
         if (!faculty) {
-            return res.status(400).json({ message: "Faculty does not exist" });
+            return res.status(404).json({ message: "Faculty does not exist" });
         }
         faculty.name = name || faculty.name;
         faculty.email = email || faculty.email;
+        faculty.year = year ?? faculty.year;
 
         if (department) {
-            const dept = await Department.findOne({ name: department });
+            const dept = await Department.findOne({ deptName: department });
             if (!dept) {
                 return res.status(400).json({ message: "Department does not exist" });
             }
@@ -478,24 +544,25 @@ export const updateFaculty = async (req, res) => {
         }
 
         await faculty.save();
-        res.json({ message: "Updated faculty!" })
+        res.json({ message: "Updated faculty!", faculty })
     } catch (error) {
         console.log("Error: ", error);
+        res.status(500).json({ message: "Failed to update faculty", error: error.message });
     }
 };
 
 export const removeFaculty = async (req, res) => {
     try {
-        const { facultyId } = req.body;
-        const faculty = await Faculty.find({ facultyId });
+        const faculty = await Faculty.findById(req.params.id);
         if (!faculty) {
-            return res.status(400).json({ message: "Faculty does not exist" });
+            return res.status(404).json({ message: "Faculty does not exist" });
         }
 
-        await Faculty.deleteOne({ facultyId });
+        await faculty.deleteOne();
         res.json({ message: "Deleted Faculty" });
     } catch (error) {
         console.log("Error: ", error);
+        res.status(500).json({ message: "Failed to delete faculty", error: error.message });
     }
 };
 
