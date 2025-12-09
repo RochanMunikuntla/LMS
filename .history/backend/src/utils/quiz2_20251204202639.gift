@@ -1,0 +1,106 @@
+::Q21::What is the primary purpose of declaring a variable's data type in a statically-typed language (like Java or C++)?{
+=To tell the compiler how much memory to allocate and what operations are valid on the stored value.#Correct. The data type determines size and permissible actions.
+~To automatically convert the value to a string for printing.#This is a secondary action, not the primary purpose.
+~To make the code look cleaner and more organized.#This is a side benefit, not the core purpose.
+~To ensure the variable can store any kind of data without restrictions.#This describes a dynamically-typed system, not static typing.
+}
+
+
+::Q22::Which type of loop structure is most appropriate when you know *exactly* how many times you need to execute a block of code?{
+=For loop#Correct. 'For' loops are ideal for definite iteration.
+~While loop#While loops are better for indefinite iteration (running until a condition is met).
+~Do-while loop#Better for ensuring the code executes at least once, but still indefinite.
+~Recursive function#Recursion is a technique, not a basic loop structure, and can be inefficient for simple repetition.
+}
+
+
+::Q23::In most programming languages, what is the value of the boolean expression $5 < 10$ and $10 > 20$?{
+=False#Correct. The AND operator requires both conditions to be True. $5 < 10$ is True, but $10 > 20$ is False, so the result is False.
+~True#Incorrect. The second condition is False.
+~Error#The expression is syntactically valid.
+~1#In some languages, True is represented as 1, but the logical outcome of the whole expression is False (0).
+}
+
+::Q24::What is the index of the *first* element in an array or list in most modern programming languages?{
+=0#Correct. Most languages use zero-based indexing.
+~1#Incorrect. This is one-based indexing, which is less common.
+~-1#This is often used to denote an error or the last element in some specific languages (like Python).
+~The length of the array#The length of the array is one more than the index of the last element.
+}
+
+::Q25::What is the purpose of a **return** statement within a function?{
+=To send a value back to the code that called the function and exit the function's execution.#Correct. It provides the output and terminates execution.
+~To print a value to the console for debugging.#A return statement does not necessarily print anything.
+~To declare a new variable inside the function.#Variable declaration is done using a data type or keyword (e.g., `int`, `var`).
+~To start an infinite loop.#Loop structures (while, for) are used to start loops.
+}
+
+::MC1:: What does "coding" mean in computer science?
+{
+  ~The process of running a computer program
+  =Writing instructions for a computer to follow using a programming language
+  ~Decoding secret messages
+  ~Organizing files in a folder
+}
+
+::MC2:: Which of these is a programming language?
+{
+  ~HTML processor
+  =Python
+  ~Computer hardware
+  ~Operating system
+}
+
+::MC3:: What is a variable in programming?
+{
+  ~A computer that changes
+  =A named container that stores a value in memory
+  ~A mathematical equation
+  ~A type of software error
+}
+
+::MC4:: What does "debugging" mean?
+{
+  ~Making code run faster
+  =Finding and fixing errors in a program
+  ~Adding new features to code
+  ~Compiling source code
+}
+
+::MC5:: What is a function in programming?
+{
+  ~A mathematical operation only
+  =A reusable block of code that performs a specific task
+  ~A type of error message
+  ~A variable declaration
+}
+
+::TF1:: Python is a programming language used to write code. {T} 
+
+::TF2:: A variable can only store numbers. {F}
+
+::TF3:: Comments in code are executed by the computer. {F}
+
+::TF4:: A loop allows you to repeat a block of code multiple times. {T} 
+
+::TF5:: Data types include integers, strings, and booleans. {T}
+
+::Numeric1:: How many basic data types are commonly used in most programming languages? {#4}
+
+::Numeric2:: If a variable x \= 10, what is the value of x + 5? {#15}
+
+::Numeric3:: In programming, how many bytes are typically used to store a boolean value? {#1}
+
+::Numeric4:: If you have a loop that runs 5 times, how many total iterations occur? {#5}
+
+::Numeric5:: How many parameters does a basic "print" function typically accept at minimum? {#1}
+
+::Short1:: What is the purpose of comments in code? {=To explain what the code does =To provide notes for other programmers or future reference =To document the logic of the code}
+
+::Short2:: Name two common data types in programming. {=Integer =String =Float =Boolean =Double}
+
+::Short3:: What is an algorithm? {=A step-by-step procedure or method to solve a problem =A set of instructions to accomplish a task =A logical approach to programming}
+
+::Short4:: What does "input" mean in the context of programming? {=Data or information given to a program =Information received from a user or external source =Values the program reads from the keyboard or file}
+
+::Short5:: Define the term "loop" in programming. {=A control structure that repeats a block of code =A way to execute code multiple times based on a condition =An iteration mechanism in programs}

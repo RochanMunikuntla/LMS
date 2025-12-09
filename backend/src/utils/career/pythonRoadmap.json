@@ -1,0 +1,195 @@
+{
+  "roadmap": {
+    "title": "Python",
+    "slug": "python",
+    "description": "Master the art of writing clean Python code and implementing core data structures and algorithms.",
+    "domain": "Programming",
+    "level": "beginner",
+    "modules": [
+      {
+        "title": "Arrays",
+        "slug": "arrays",
+        "description": "Master the array data structure and key algorithms. This module goes beyond basics, focusing on efficient implementation techniques",
+        "index": 1,
+        "topics": [
+          {
+            "title": "Traversal Concept",
+            "slug": "traversal-concept",
+            "index": 1,
+            "languagesUsed": "Python",
+            "example": "# Traverse through an array and print each element\narr = [10, 20, 30, 40, 50]\nfor i in range(len(arr)):\n    print(arr[i])\n\n# Output: 10 20 30 40 50",
+            "testCases": [
+              {
+                "input": "5\n1 2 3 4 5",
+                "output": "1\n2\n3\n4\n5",
+                "visible": true
+              },
+              {
+                "input": "3\n10 20 30",
+                "output": "10\n20\n30",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Array traversal is the process of visiting each element in an array sequentially, one by one. It's a fundamental operation that allows you to inspect, process, or modify array elements. In Python, you can traverse arrays using loops (for or while loops). The most common approach is using a for loop with the range() function to iterate through indices, giving you access to each element's position and value. Understanding traversal is crucial because it forms the basis for more complex array operations like searching, sorting, and transforming data. You can traverse forward (from index 0 to the end) or backward (from the last index to 0), and even skip elements using custom step values."
+          },
+          {
+            "title": "Traversal Practice",
+            "slug": "traversal-practice",
+            "index": 2,
+            "languagesUsed": "Python",
+            "example": "# Print array elements in reverse order\narr = [1, 2, 3, 4, 5]\nfor i in range(len(arr) - 1, -1, -1):\n    print(arr[i])",
+            "testCases": [
+              {
+                "input": "5\n1 2 3 4 5",
+                "output": "5\n4\n3\n2\n1",
+                "visible": true
+              },
+              {
+                "input": "4\n10 20 30 40",
+                "output": "40\n30\n20\n10",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Apply array traversal in reverse order to access elements from the end to the beginning."
+          },
+          {
+            "title": "Calculate Sum and Average of an Array",
+            "slug": "calculate-sum-average-concept",
+            "index": 3,
+            "languagesUsed": "Python",
+            "example": "# Calculate sum and average of array elements\narr = [10, 20, 30, 40, 50]\ntotal_sum = sum(arr)\naverage = total_sum / len(arr)\nprint(f\"Sum: {total_sum}, Average: {average}\")\n# Output: Sum: 150, Average: 30.0",
+            "testCases": [
+              {
+                "input": "4\n10 20 30 40",
+                "output": "100 25.0",
+                "visible": true
+              },
+              {
+                "input": "3\n5 5 5",
+                "output": "15 5.0",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Calculating the sum and average of array elements are common statistical operations. The sum is the total of all elements added together, while the average (or mean) is the sum divided by the number of elements. In Python, the built-in sum() function efficiently calculates the total, and you can divide it by len(array) to get the average. These calculations are useful for analyzing data, finding trends, and understanding the distribution of values. For instance, you might use average to find the mean score of students or the average temperature over a month. Both operations require O(n) time complexity as you need to visit each element at least once."
+          },
+          {
+            "title": "Calculate Sum or Average Practice",
+            "slug": "calculate-sum-average-practice",
+            "index": 4,
+            "languagesUsed": "Python",
+            "example": "# Find sum of only even numbers in array\narr = [1, 2, 3, 4, 5, 6]\neven_sum = sum([x for x in arr if x % 2 == 0])\nprint(even_sum)\n# Output: 12",
+            "testCases": [
+              {
+                "input": "6\n1 2 3 4 5 6",
+                "output": "12",
+                "visible": true
+              },
+              {
+                "input": "5\n2 4 6 8 10",
+                "output": "30",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Implement conditional sum calculation to compute the sum of specific elements (e.g., only even numbers) in an array."
+          },
+          {
+            "title": "Linear Search Concept",
+            "slug": "linear-search-concept",
+            "index": 5,
+            "languagesUsed": "Python",
+            "example": "# Linear search: find an element in array\narr = [1, 2, 3, 4, 5]\ntarget = 3\nfor i in range(len(arr)):\n    if arr[i] == target:\n        print(f\"Element found at index {i}\")\n        break\n# Output: Element found at index 2",
+            "testCases": [
+              {
+                "input": "5\n1 2 3 4 5\n3",
+                "output": "2",
+                "visible": true
+              },
+              {
+                "input": "4\n10 20 30 40\n20",
+                "output": "1",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Linear search is the simplest search algorithm that checks each element in an array one by one until the target element is found or the entire array is exhausted. It works on both sorted and unsorted arrays, making it versatile but not the most efficient for large datasets. The algorithm iterates through the array using a pointer that moves from the beginning to the end, comparing each element with the target value. When a match is found, you typically return the index or break the loop. Linear search has a time complexity of O(n) in the worst case, but O(1) in the best case (when the target is the first element). It's the go-to approach for small arrays or unsorted data where other optimized searches aren't applicable."
+          },
+          {
+            "title": "Linear Search Practice",
+            "slug": "linear-search-practice",
+            "index": 6,
+            "languagesUsed": "Python",
+            "example": "# Find all occurrences of element in array\narr = [1, 2, 3, 2, 4, 2, 5]\ntarget = 2\nindices = [i for i in range(len(arr)) if arr[i] == target]\nprint(indices)\n# Output: [1, 3, 5]",
+            "testCases": [
+              {
+                "input": "7\n1 2 3 2 4 2 5\n2",
+                "output": "1 3 5",
+                "visible": true
+              },
+              {
+                "input": "5\n1 2 3 4 5\n3",
+                "output": "2",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Extend linear search to find all occurrences of a target element and return their indices."
+          },
+          {
+            "title": "Binary Search Concept",
+            "slug": "binary-search-concept",
+            "index": 7,
+            "languagesUsed": "Python",
+            "example": "# Binary search on sorted array\narr = [1, 3, 5, 7, 9, 11]\ntarget = 7\nleft, right = 0, len(arr) - 1\nwhile left <= right:\n    mid = (left + right) // 2\n    if arr[mid] == target:\n        print(f\"Found at index {mid}\")\n        break\n    elif arr[mid] < target:\n        left = mid + 1\n    else:\n        right = mid - 1\n# Output: Found at index 3",
+            "testCases": [
+              {
+                "input": "6\n1 3 5 7 9 11\n7",
+                "output": "3",
+                "visible": true
+              },
+              {
+                "input": "5\n2 4 6 8 10\n6",
+                "output": "2",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Binary search is an efficient search algorithm that works exclusively on sorted arrays. Instead of checking every element sequentially, it repeatedly divides the search space in half. The algorithm maintains three pointers: left (start), right (end), and mid (middle). It compares the target with the middle element\u2014if they match, the target is found. If the target is greater, search the right half; if smaller, search the left half. This divide-and-conquer approach dramatically reduces the search space with each iteration. Binary search achieves O(log n) time complexity, making it vastly superior to linear search for large datasets. However, the array must be sorted beforehand, and you need to handle edge cases like when the element doesn't exist in the array."
+          },
+          {
+            "title": "Binary Search Practice",
+            "slug": "binary-search-practice",
+            "index": 8,
+            "languagesUsed": "Python",
+            "example": "# Find first occurrence of target in sorted array\narr = [1, 2, 2, 2, 3, 4, 5]\ntarget = 2\nleft, right = 0, len(arr) - 1\nresult = -1\nwhile left <= right:\n    mid = (left + right) // 2\n    if arr[mid] == target:\n        result = mid\n        right = mid - 1\n    elif arr[mid] < target:\n        left = mid + 1\n    else:\n        right = mid - 1\nprint(result)\n# Output: 1",
+            "testCases": [
+              {
+                "input": "7\n1 2 2 2 3 4 5\n2",
+                "output": "1",
+                "visible": true
+              },
+              {
+                "input": "5\n1 3 3 3 5\n3",
+                "output": "1",
+                "visible": false
+              }
+            ],
+            "timeLimitMs": 2000,
+            "memoryLimitKb": 65536,
+            "content": "Implement binary search to find the first occurrence of a target element in a sorted array with potential duplicates."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,112 @@
+import mongoose from "mongoose";
+
+const quizSchema = new mongoose.Schema({
+    importId: {
+        type: String,
+        required: true
+    },
+    title: {
+        type: String,
+        required: true
+    },
+    questions: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Question"
+    }],
+    shuffleQuestions: {
+        type: Boolean,
+        default: false
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    course: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Course"
+    }
+});
+
+const questionSchema = new mongoose.Schema({
+    importId: {
+        type: String,
+        required: true
+    },
+
+    quiz: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Quiz"
+    },
+
+    question: {
+        type: String,
+        required: true
+    },
+
+    type: {
+        type: String,
+        enum: ["MC", "TF", "Short", "Numerical", "Matching"],
+        required: true
+    },
+
+    // For MC questions
+    options: [{
+        option: String,
+        isCorrect: Boolean,
+        explanation: String
+    }],
+
+    // For TF and Numerical
+    answer: {
+        type: mongoose.Schema.Types.Mixed, 
+        default: null
+        // Boolean for TF
+        // Number for Numerical
+    },
+
+    // For Numerical questions (optional)
+    tolerance: Number,
+
+    // For Short Answer
+    answers: [String],
+
+    // For Matching questions
+    pairs: [{
+        left: String,
+        right: String
+    }],
+
+    marks: {
+        type: Number,
+        default: 1
+    }
+});
+
+
+const attemptSchema = new mongoose.Schema({
+  quiz: { type: mongoose.Schema.Types.ObjectId, ref: "Quiz", required: true },
+  student: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+
+  // answers: array of per-question responses
+  answers: [{
+    question: { type: mongoose.Schema.Types.ObjectId, ref: "Question", required: true },
+
+    selectedOptions: [{ type: mongoose.Schema.Types.ObjectId }],
+    tfAnswer: Boolean,
+    numericalAnswer: Number,
+    shortAnswer: String,
+
+    marksAwarded: { type: Number, default: 0 }
+  }],
+
+  score: { type: Number, default: 0 },
+  submittedAt: { type: Date, default: Date.now }
+
+}, { timestamps: true });
+
+export const Quiz = mongoose.model("Quiz", quizSchema);
+export const Question = mongoose.model("Question", questionSchema);
+export const Attempt = mongoose.model("Attempt", attemptSchema);
+
+Question.createIndexes({ importId: 1 });
+Quiz.createIndexes({ importId: 1 });

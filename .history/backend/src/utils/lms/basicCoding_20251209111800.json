@@ -1,0 +1,1110 @@
+[
+  {
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "correctOption": "O(log n)",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)",
+      "O(n^2)"
+    ],
+    "explanation": "Binary search divides the search space in half with each comparison. Since we eliminate half of the remaining elements each time, the maximum number of comparisons is log\u2082(n), resulting in O(log n) time complexity."  },
+  {
+    "question": "What is the time complexity of linear search in an unsorted array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Linear search checks each element sequentially until finding the target. In the worst case, we need to check all n elements, resulting in O(n) time complexity."  },
+  {
+    "question": "What is the time complexity of bubble sort?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Bubble sort uses nested loops - the outer loop runs n times and the inner loop runs approximately n times for each iteration. This results in n * n = n^2 comparisons and swaps in the worst case."  },
+  {
+    "question": "What is the time complexity of merge sort?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(2^n)"
+    ],
+    "explanation": "Merge sort divides the array into halves recursively (log n levels) and merges them back (n operations per level). Total complexity is O(n log n) in all cases - best, average, and worst."  },
+  {
+    "question": "What is the space complexity of merge sort?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Merge sort requires additional space to store the temporary arrays during the merge process. In the worst case, we need O(n) additional space, making it not an in-place sorting algorithm."  },
+  {
+    "question": "What does 5 << 2 equal?",
+    "correctOption": "20",
+    "options": [
+      "10",
+      "20",
+      "40",
+      "10"
+    ],
+    "explanation": "Left shift (<<) moves bits to the left by the specified number of positions. 5 in binary is 101. Shifting left by 2 gives 10100, which is 20 in decimal. Each left shift by 1 is equivalent to multiplying by 2."  },
+  {
+    "question": "What is the result of 12 >> 2 ?",
+    "correctOption": "3",
+    "options": [
+      "1",
+      "3",
+      "6",
+      "24"
+    ],
+    "explanation": "Right shift (>>) moves bits to the right. 12 in binary is 1100. Shifting right by 2 gives 0011, which is 3 in decimal. Each right shift by 1 is equivalent to dividing by 2 (integer division)."  },
+  {
+    "question": "What is the bitwise AND of 12 and 10?",
+    "correctOption": "8",
+    "options": [
+      "6",
+      "8",
+      "14",
+      "22"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise AND compares each bit: 1100 & 1010 = 1000, which is 8 in decimal. AND returns 1 only when both bits are 1."  },
+  {
+    "question": "What is the bitwise OR of 12 and 10?",
+    "correctOption": "14",
+    "options": [
+      "8",
+      "12",
+      "10",
+      "14"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise OR compares each bit: 1100 | 1010 = 1110, which is 14 in decimal. OR returns 1 when at least one bit is 1."  },
+  {
+    "question": "What is the bitwise XOR of 12 and 10?",
+    "correctOption": "6",
+    "options": [
+      "8",
+      "14",
+      "6",
+      "22"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise XOR: 1100 ^ 1010 = 0110, which is 6 in decimal. XOR returns 1 when bits are different."  },
+  {
+    "question": "Which sorting algorithm has the best average-case time complexity?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Several algorithms like merge sort, quicksort, and heap sort achieve O(n log n) average time complexity. This is the theoretical lower bound for comparison-based sorting algorithms."  },
+  {
+    "question": "What is the time complexity of accessing an element in a linked list?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Linked lists don't support random access. To find an element, you must traverse from the head node. In the worst case, you traverse all n nodes, resulting in O(n) time complexity."  },
+  {
+    "question": "What is the time complexity of inserting an element at the beginning of a linked list?",
+    "correctOption": "O(1)",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)",
+      "O(n^2)"
+    ],
+    "explanation": "Inserting at the beginning of a linked list only requires creating a new node and updating pointers, which is constant time. You don't need to shift elements like in an array."  },
+  {
+    "question": "What is a Stack's primary characteristic?",
+    "correctOption": "Last In First Out (LIFO)",
+    "options": [
+      "First In First Out",
+      "Last In First Out (LIFO)",
+      "Random access",
+      "Sorted order"
+    ],
+    "explanation": "A Stack follows LIFO principle where the last element added is the first to be removed. Think of a stack of plates - you add and remove from the top."  },
+  {
+    "question": "What is a Queue's primary characteristic?",
+    "correctOption": "First In First Out (FIFO)",
+    "options": [
+      "Last In First Out",
+      "First In First Out (FIFO)",
+      "Random access",
+      "Reverse order"
+    ],
+    "explanation": "A Queue follows FIFO principle where the first element added is the first to be removed. Like a real queue - first person in line is served first."  },
+  {
+    "question": "What is the time complexity of push and pop operations in a Stack?",
+    "correctOption": "O(1) for both",
+    "options": [
+      "O(n) for both",
+      "O(1) for both",
+      "O(n) for push, O(1) for pop",
+      "O(log n) for both"
+    ],
+    "explanation": "Both push (add) and pop (remove) operations work on the top of the stack and require constant time, regardless of the stack size. These are fundamental operations with O(1) complexity."  },
+  {
+    "question": "What is the time complexity of enqueue and dequeue operations in a Queue?",
+    "correctOption": "O(1) for both",
+    "options": [
+      "O(n) for both",
+      "O(1) for both",
+      "O(n) for enqueue",
+      "O(log n) for both"
+    ],
+    "explanation": "Both enqueue (add) and dequeue (remove) operations in a queue take constant time. They simply manipulate pointers at the front and rear, independent of queue size."  },
+  {
+    "question": "What is the time complexity of quicksort in the best case?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "In the best case, quicksort partitions the array into two equal halves at each step, resulting in a binary tree of depth log n. Each level processes n elements, giving O(n log n)."  },
+  {
+    "question": "What is the time complexity of quicksort in the worst case?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(n)",
+      "O(log n)"
+    ],
+    "explanation": "Quicksort's worst case occurs when the pivot is always the smallest or largest element, causing unbalanced partitions. This results in n + (n-1) + (n-2) + ... = O(n^2) comparisons."  },
+  {
+    "question": "What is the result of 1 << 3 (left shift by 3)?",
+    "correctOption": "8",
+    "options": [
+      "3",
+      "6",
+      "8",
+      "4"
+    ],
+    "explanation": "1 in binary is 0001. Left shifting by 3 positions gives 1000, which is 8 in decimal. Left shift by n is equivalent to multiplying by 2^n (1 * 2^3 = 8)."  },
+  {
+    "question": "How many bits are set to 1 in the binary representation of 15?",
+    "correctOption": "4",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "explanation": "15 in binary is 1111, which has four bits set to 1. This is also known as the population count or Hamming weight of a number."  },
+  {
+    "question": "What is the bitwise NOT of 5?",
+    "correctOption": "-6 (in two's complement)",
+    "options": [
+      "2",
+      "-6 (in two's complement)",
+      "10",
+      "3"
+    ],
+    "explanation": "Bitwise NOT (~) inverts all bits. 5 in 8-bit binary is 00000101. NOT gives 11111010, which is -6 in two's complement representation (used in most systems)."  },
+  {
+    "question": "What is the time complexity of depth-first search (DFS) on a graph with V vertices and E edges?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V)",
+      "O(E)",
+      "O(V + E)",
+      "O(V * E)"
+    ],
+    "explanation": "DFS visits each vertex once (O(V)) and explores each edge once (O(E)). Total time complexity is O(V + E) for both adjacency list and adjacency matrix representations."  },
+  {
+    "question": "What is the time complexity of breadth-first search (BFS) on a graph?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V)",
+      "O(E)",
+      "O(V + E)",
+      "O(V^2)"
+    ],
+    "explanation": "BFS also visits each vertex once and explores each edge once using a queue data structure. Time complexity is O(V + E), same as DFS."  },
+  {
+    "question": "What does the expression (n & (n-1)) == 0 check?",
+    "correctOption": "Whether n is a power of 2",
+    "options": [
+      "Whether n is even",
+      "Whether n is a power of 2",
+      "Whether n is prime",
+      "Whether n is negative"
+    ],
+    "explanation": "Powers of 2 in binary have exactly one bit set (e.g., 8 = 1000). Subtracting 1 flips all bits after that single 1 (7 = 0111). Their AND is 0. This is a clever bit manipulation trick."  },
+  {
+    "question": "What is the time complexity of heap sort?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Heap sort builds a heap (O(n)) and performs n deletions (each O(log n)). Total time is O(n) + O(n log n) = O(n log n) in all cases - best, average, and worst."  },
+  {
+    "question": "What is the time complexity of insertion sort?",
+    "correctOption": "O(n^2) worst case, O(n) best case",
+    "options": [
+      "O(n log n)",
+      "O(n^2) worst case, O(n) best case",
+      "O(n^2)",
+      "O(n)"
+    ],
+    "explanation": "Insertion sort has O(n^2) in the worst case (reverse sorted) and O(n) in the best case (already sorted). Average case is also O(n^2). It's efficient for small datasets."  },
+  {
+    "question": "What is the time complexity of selection sort?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(n)",
+      "O(2^n)"
+    ],
+    "explanation": "Selection sort always finds the minimum element and places it in position, requiring n iterations of searching through remaining elements. This results in O(n^2) in all cases."  },
+  {
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "correctOption": "O(log n)",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)",
+      "O(n^2)"
+    ],
+    "explanation": "Binary search divides the search space in half with each comparison. Since we eliminate half of the remaining elements each time, the maximum number of comparisons is log\u2082(n), resulting in O(log n) time complexity."
+
+  },
+  {
+    "question": "What is the time complexity of linear search in an unsorted array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Linear search checks each element sequentially until finding the target. In the worst case, we need to check all n elements, resulting in O(n) time complexity."
+
+  },
+  {
+    "question": "What is the time complexity of bubble sort?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Bubble sort uses nested loops - the outer loop runs n times and the inner loop runs approximately n times for each iteration. This results in n * n = n^2 comparisons and swaps in the worst case."
+
+  },
+  {
+    "question": "What is the time complexity of merge sort?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(2^n)"
+    ],
+    "explanation": "Merge sort divides the array into halves recursively (log n levels) and merges them back (n operations per level). Total complexity is O(n log n) in all cases - best, average, and worst."
+
+  },
+  {
+    "question": "What is the space complexity of merge sort?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Merge sort requires additional space to store the temporary arrays during the merge process. In the worst case, we need O(n) additional space, making it not an in-place sorting algorithm."
+
+  },
+  {
+    "question": "What is a bit shift operation? How many positions does 5 << 2 shift left?",
+    "correctOption": "2 positions; result is 20",
+    "options": [
+      "1 position; result is 10",
+      "2 positions; result is 20",
+      "3 positions; result is 40",
+      "2 positions; result is 10"
+    ],
+    "explanation": "Left shift (<<) moves bits to the left by the specified number of positions. 5 in binary is 101. Shifting left by 2 gives 10100, which is 20 in decimal. Each left shift by 1 is equivalent to multiplying by 2."
+
+  },
+  {
+    "question": "What is the result of 12 >> 2 (right shift)?",
+    "correctOption": "3",
+    "options": [
+      "1",
+      "3",
+      "6",
+      "24"
+    ],
+    "explanation": "Right shift (>>) moves bits to the right. 12 in binary is 1100. Shifting right by 2 gives 0011, which is 3 in decimal. Each right shift by 1 is equivalent to dividing by 2 (integer division)."
+
+  },
+  {
+    "question": "What is the bitwise AND of 12 and 10?",
+    "correctOption": "8",
+    "options": [
+      "6",
+      "8",
+      "14",
+      "22"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise AND compares each bit: 1100 & 1010 = 1000, which is 8 in decimal. AND returns 1 only when both bits are 1."
+
+  },
+  {
+    "question": "What is the bitwise OR of 12 and 10?",
+    "correctOption": "14",
+    "options": [
+      "8",
+      "12",
+      "10",
+      "14"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise OR compares each bit: 1100 | 1010 = 1110, which is 14 in decimal. OR returns 1 when at least one bit is 1."
+
+  },
+  {
+    "question": "What is the bitwise XOR of 12 and 10?",
+    "correctOption": "6",
+    "options": [
+      "8",
+      "14",
+      "6",
+      "22"
+    ],
+    "explanation": "12 in binary is 1100, 10 is 1010. Bitwise XOR: 1100 ^ 1010 = 0110, which is 6 in decimal. XOR returns 1 when bits are different."
+
+  },
+  {
+    "question": "Which sorting algorithm has the best average-case time complexity?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Several algorithms like merge sort, quicksort, and heap sort achieve O(n log n) average time complexity. This is the theoretical lower bound for comparison-based sorting algorithms."
+
+  },
+  {
+    "question": "What is the time complexity of accessing an element in a linked list?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Linked lists don't support random access. To find an element, you must traverse from the head node. In the worst case, you traverse all n nodes, resulting in O(n) time complexity."
+
+  },
+  {
+    "question": "What is the time complexity of inserting an element at the beginning of a linked list?",
+    "correctOption": "O(1)",
+    "options": [
+      "O(1)",
+      "O(n)",
+      "O(log n)",
+      "O(n^2)"
+    ],
+    "explanation": "Inserting at the beginning of a linked list only requires creating a new node and updating pointers, which is constant time. You don't need to shift elements like in an array."
+
+  },
+  {
+    "question": "What is the time complexity of insertion sort?",
+    "correctOption": "O(n^2) worst case, O(n) best case",
+    "options": [
+      "O(n log n)",
+      "O(n^2) worst case, O(n) best case",
+      "O(n^2)",
+      "O(n)"
+    ],
+    "explanation": "Insertion sort has O(n^2) in the worst case (reverse sorted) and O(n) in the best case (already sorted). Average case is also O(n^2). It's efficient for small datasets."
+
+  },
+  {
+    "question": "What is the time complexity of selection sort?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(n)",
+      "O(2^n)"
+    ],
+    "explanation": "Selection sort always finds the minimum element and places it in position, requiring n iterations of searching through remaining elements. This results in O(n^2) in all cases."
+
+  },
+  {
+    "question": "What is the time complexity of quicksort in the best case?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "In the best case, quicksort partitions the array into two equal halves at each step, resulting in a binary tree of depth log n. Each level processes n elements, giving O(n log n)."
+
+  },
+  {
+    "question": "What is the time complexity of quicksort in the worst case?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n log n)",
+      "O(n^2)",
+      "O(n)",
+      "O(log n)"
+    ],
+    "explanation": "Quicksort's worst case occurs when the pivot is always the smallest or largest element, causing unbalanced partitions. This results in n + (n-1) + (n-2) + ... = O(n^2) comparisons."
+
+  },
+  {
+    "question": "What is the result of 1 << 3 (left shift by 3)?",
+    "correctOption": "8",
+    "options": [
+      "3",
+      "6",
+      "8",
+      "4"
+    ],
+    "explanation": "1 in binary is 0001. Left shifting by 3 positions gives 1000, which is 8 in decimal. Left shift by n is equivalent to multiplying by 2^n (1 * 2^3 = 8)."
+
+  },
+  {
+    "question": "How many bits are set to 1 in the binary representation of 15?",
+    "correctOption": "4",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "explanation": "15 in binary is 1111, which has four bits set to 1. This is also known as the population count or Hamming weight of a number."
+
+  },
+  {
+    "question": "What is the bitwise NOT of 5?",
+    "correctOption": "-6 (in two's complement)",
+    "options": [
+      "2",
+      "-6 (in two's complement)",
+      "10",
+      "3"
+    ],
+    "explanation": "Bitwise NOT (~) inverts all bits. 5 in 8-bit binary is 00000101. NOT gives 11111010, which is -6 in two's complement representation (used in most systems)."
+
+  },
+  {
+    "question": "What is the time complexity of depth-first search (DFS) on a graph with V vertices and E edges?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V)",
+      "O(E)",
+      "O(V + E)",
+      "O(V * E)"
+    ],
+    "explanation": "DFS visits each vertex once (O(V)) and explores each edge once (O(E)). Total time complexity is O(V + E) for both adjacency list and adjacency matrix representations."
+
+  },
+  {
+    "question": "What is the time complexity of breadth-first search (BFS) on a graph?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V)",
+      "O(E)",
+      "O(V + E)",
+      "O(V^2)"
+    ],
+    "explanation": "BFS also visits each vertex once and explores each edge once using a queue data structure. Time complexity is O(V + E), same as DFS."
+
+  },
+  {
+    "question": "What does the expression (n & (n-1)) == 0 check?",
+    "correctOption": "Whether n is a power of 2",
+    "options": [
+      "Whether n is even",
+      "Whether n is a power of 2",
+      "Whether n is prime",
+      "Whether n is negative"
+    ],
+    "explanation": "Powers of 2 in binary have exactly one bit set (e.g., 8 = 1000). Subtracting 1 flips all bits after that single 1 (7 = 0111). Their AND is 0. This is a clever bit manipulation trick."
+
+  },
+  {
+    "question": "What is the time complexity of heap sort?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n log n)",
+      "O(n^2)",
+      "O(log n)"
+    ],
+    "explanation": "Heap sort builds a heap (O(n)) and performs n deletions (each O(log n)). Total time is O(n) + O(n log n) = O(n log n) in all cases - best, average, and worst."
+
+  },
+  {
+    "question": "What is the space complexity of quicksort (with recursion)?",
+    "correctOption": "O(log n) average case, O(n) worst case",
+    "options": [
+      "O(1)",
+      "O(log n) average case, O(n) worst case",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Quicksort uses recursion stack space. In the average case with balanced partitions, the recursion depth is O(log n). In the worst case with unbalanced partitions, it's O(n)."
+
+  },
+  {
+    "question": "How many left shifts by 1 would equal multiplying a number by 8?",
+    "correctOption": "3 left shifts",
+    "options": [
+      "2 left shifts",
+      "3 left shifts",
+      "4 left shifts",
+      "8 left shifts"
+    ],
+    "explanation": "Each left shift by 1 multiplies by 2. So left shift by 3 multiplies by 2^3 = 8. Therefore, 3 left shifts are needed to multiply by 8."
+
+  },
+  {
+    "question": "What is the time complexity of finding the maximum element in an unsorted array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "To find the maximum in an unsorted array, you must compare each element with the current maximum, requiring a single pass through all n elements."
+
+  },
+  {
+    "question": "What is the time complexity of deleting an element from the middle of an array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Deleting from the middle requires shifting all elements after the deletion point one position left. In the worst case, this involves moving O(n) elements."
+
+  },
+  {
+    "question": "What is the time complexity of inserting an element in the middle of an array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Inserting in the middle requires shifting all elements after the insertion point one position right to make space. This involves moving O(n) elements."
+
+  },
+  {
+    "question": "What is the result of 8 >> 3?",
+    "correctOption": "1",
+    "options": [
+      "2",
+      "1",
+      "4",
+      "16"
+    ],
+    "explanation": "8 in binary is 1000. Right shifting by 3 positions gives 0001, which is 1 in decimal. This is equivalent to dividing 8 by 2^3 = 8, so 8/8 = 1."
+
+  },
+  {
+    "question": "What is the bitwise XOR of 7 and 3?",
+    "correctOption": "4",
+    "options": [
+      "6",
+      "4",
+      "10",
+      "3"
+    ],
+    "explanation": "7 in binary is 0111, 3 is 0011. Bitwise XOR: 0111 ^ 0011 = 0100, which is 4 in decimal. XOR gives 1 when bits differ."
+
+  },
+  {
+    "question": "What is the time complexity of Dijkstra's algorithm using a min-heap?",
+    "correctOption": "O((V + E) log V)",
+    "options": [
+      "O(V + E)",
+      "O((V + E) log V)",
+      "O(V log V)",
+      "O(V^2 + E)"
+    ],
+    "explanation": "Dijkstra's with a min-heap performs V extract-min operations and E decrease-key operations. Each heap operation takes O(log V), resulting in O((V + E) log V) total complexity."
+
+  },
+  {
+    "question": "What is the time complexity of finding a path between two nodes in an unweighted graph using BFS?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V)",
+      "O(E)",
+      "O(V + E)",
+      "O(V^2)"
+    ],
+    "explanation": "BFS explores all vertices and edges in the graph to find a path. Time complexity is O(V + E) since we visit each vertex once and traverse each edge once."
+
+  },
+  {
+    "question": "What is the space complexity of a recursive function with maximum depth d?",
+    "correctOption": "O(d)",
+    "options": [
+      "O(1)",
+      "O(d)",
+      "O(d^2)",
+      "O(2^d)"
+    ],
+    "explanation": "The recursion call stack stores a frame for each recursive call. With maximum depth d, the space complexity is O(d) due to the call stack memory."
+
+  },
+  {
+    "question": "What is the time complexity of the two-pointer technique on a sorted array?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "The two-pointer technique moves from opposite ends toward the center, processing each element at most once. This results in O(n) time complexity."
+
+  },
+  {
+    "question": "How many bits are needed to represent integers from 0 to 255?",
+    "correctOption": "8 bits",
+    "options": [
+      "4 bits",
+      "8 bits",
+      "16 bits",
+      "32 bits"
+    ],
+    "explanation": "With 8 bits, you can represent 2^8 = 256 different values (0 to 255). This is why a byte has 8 bits - it can store one unsigned character."
+
+  },
+  {
+    "question": "What is the bitwise AND of 15 and 8?",
+    "correctOption": "8",
+    "options": [
+      "7",
+      "23",
+      "8",
+      "15"
+    ],
+    "explanation": "15 in binary is 1111, 8 is 1000. Bitwise AND: 1111 & 1000 = 1000, which is 8 in decimal. AND returns 1 only when both bits are 1."
+
+  },
+  {
+    "question": "What is the time complexity of counting occurrences of each element in an array using a hash map?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Iterating through the array once and updating counts in a hash map takes O(n) time. Hash map operations (insert/update) are O(1) on average."
+
+  },
+  {
+    "question": "What is the result of the expression 10 | 5?",
+    "correctOption": "15",
+    "options": [
+      "2",
+      "15",
+      "5",
+      "10"
+    ],
+    "explanation": "10 in binary is 1010, 5 is 0101. Bitwise OR: 1010 | 0101 = 1111, which is 15 in decimal. OR gives 1 when at least one bit is 1."
+
+  },
+  {
+    "question": "What is the time complexity of the Floyd-Warshall algorithm for finding shortest paths between all pairs of vertices?",
+    "correctOption": "O(V^3)",
+    "options": [
+      "O(V^2)",
+      "O(V log V)",
+      "O(V^3)",
+      "O(V + E)"
+    ],
+    "explanation": "Floyd-Warshall uses three nested loops, each iterating V times, considering all vertices as intermediate nodes. This results in V * V * V = O(V^3) time complexity regardless of graph density."
+
+  },
+  {
+    "question": "What is the time complexity of Kruskal's algorithm for finding the Minimum Spanning Tree?",
+    "correctOption": "O(E log E)",
+    "options": [
+      "O(V log V)",
+      "O(E log E)",
+      "O(V + E)",
+      "O(V^2 log V)"
+    ],
+    "explanation": "Kruskal's algorithm sorts edges (O(E log E)) and uses union-find for cycle detection (nearly O(1) per operation). The sorting step dominates, making total complexity O(E log E)."
+
+  },
+  {
+    "question": "What is the time complexity of the Bellman-Ford algorithm?",
+    "correctOption": "O(V * E)",
+    "options": [
+      "O(V log V)",
+      "O(E log V)",
+      "O(V * E)",
+      "O(V^2 log E)"
+    ],
+    "explanation": "Bellman-Ford relaxes all E edges V-1 times to find shortest paths from a single source. Each relaxation pass is O(E), and there are V-1 passes, resulting in O(V * E)."
+
+  },
+  {
+    "question": "What is the time complexity of topological sorting using DFS?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V^2)",
+      "O(V + E)",
+      "O(E log V)",
+      "O(V log V)"
+    ],
+    "explanation": "Topological sort using DFS visits each vertex once (O(V)) and traverses each edge once (O(E)). The total complexity is O(V + E), same as DFS."
+
+  },
+  {
+    "question": "In the expression (n & (n-1)), what does the result represent when applied iteratively?",
+    "correctOption": "Removes the rightmost set bit each time",
+    "options": [
+      "Flips all bits",
+      "Removes the rightmost set bit each time",
+      "Counts total bits",
+      "Checks parity"
+    ],
+    "explanation": "The operation (n & (n-1)) removes the rightmost set bit from n. For example, 12 (1100) becomes 8 (1000). This is used to count set bits and find power of 2."
+
+  },
+  {
+    "question": "What is the space complexity of the dynamic programming solution to the knapsack problem?",
+    "correctOption": "O(n * W) where W is the knapsack capacity",
+    "options": [
+      "O(n)",
+      "O(W)",
+      "O(n * W) where W is the knapsack capacity",
+      "O(log(n * W))"
+    ],
+    "explanation": "The DP table requires a 2D array of size n * W to store optimal solutions for all subproblems. This results in O(n * W) space complexity."
+
+  },
+  {
+    "question": "What is the time complexity of the dynamic programming solution to the knapsack problem?",
+    "correctOption": "O(n * W)",
+    "options": [
+      "O(n log n)",
+      "O(n * W)",
+      "O(n^2)",
+      "O(2^n)"
+    ],
+    "explanation": "The DP approach fills a table with n items and W capacity, requiring n * W computations. Each cell computation is O(1), making total complexity O(n * W)."
+
+  },
+  {
+    "question": "What is the time complexity of computing edit distance (Levenshtein distance) using dynamic programming?",
+    "correctOption": "O(m * n)",
+    "options": [
+      "O(m + n)",
+      "O(m * n)",
+      "O((m + n) log(m + n))",
+      "O(m^2 + n^2)"
+    ],
+    "explanation": "Edit distance DP creates a table of size (m+1) * (n+1) where m and n are string lengths. Each cell is computed in constant time, resulting in O(m * n) complexity."
+
+  },
+  {
+    "question": "What is the time complexity of the A* pathfinding algorithm?",
+    "correctOption": "O(b^d) where b is branching factor and d is depth",
+    "options": [
+      "O(V + E)",
+      "O(V^2 log V)",
+      "O(b^d) where b is branching factor and d is depth",
+      "O(V log V)"
+    ],
+    "explanation": "A* explores nodes based on heuristic estimates. In the worst case, it explores all nodes up to depth d with branching factor b, resulting in O(b^d) complexity."
+
+  },
+  {
+    "question": "What is the time complexity of the Rabin-Karp string matching algorithm with rolling hash?",
+    "correctOption": "O(n + m) average case",
+    "options": [
+      "O((n + m) log(n + m))",
+      "O(n + m) average case",
+      "O(n * m)",
+      "O(n^2 + m^2)"
+    ],
+    "explanation": "Rabin-Karp computes hash for pattern (O(m)) and rolls through text (O(n)). With a good hash function, average time is O(n + m). Worst case is O(n * m) with spurious hits."
+
+  },
+  {
+    "question": "What is the time complexity of the Knuth-Morris-Pratt (KMP) string matching algorithm?",
+    "correctOption": "O(n + m)",
+    "options": [
+      "O(n * m)",
+      "O(n + m)",
+      "O(n log m)",
+      "O((n + m) log(n + m))"
+    ],
+    "explanation": "KMP constructs a failure function in O(m) time and searches in O(n) time using no backtracking. Total complexity is O(n + m), optimal for string matching."
+
+  },
+  {
+    "question": "What does the XOR operation have in common with addition modulo 2?",
+    "correctOption": "They are equivalent operations",
+    "options": [
+      "XOR is faster",
+      "They are equivalent operations",
+      "XOR works on negative numbers",
+      "Addition mod 2 is always faster"
+    ],
+    "explanation": "XOR (exclusive OR) is mathematically equivalent to addition modulo 2. Both produce 1 when inputs differ and 0 when they're the same, making them interchangeable in GF(2)."
+
+  },
+  {
+    "question": "What is the time complexity of finding the longest increasing subsequence using dynamic programming?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n)",
+      "O(n^2)",
+      "O(n log n)",
+      "O(2^n)"
+    ],
+    "explanation": "The standard DP solution for LIS creates an array and for each position, checks all previous positions. This results in O(n^2) time complexity."
+
+  },
+  {
+    "question": "What is the time complexity of finding the longest increasing subsequence using binary search?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n)",
+      "O(n^2)",
+      "O(n log n)",
+      "O(n log^2 n)"
+    ],
+    "explanation": "Using binary search with a patience sorting approach, we can find LIS in O(n log n). For each element, binary search finds insertion position in O(log n)."
+
+  },
+  {
+    "question": "What is the space complexity of the merge sort algorithm?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(n)",
+      "O(n^2)"
+    ],
+    "explanation": "Merge sort requires temporary arrays for merging, which at any point use O(n) additional space. This makes it non-in-place, unlike quicksort."
+
+  },
+  {
+    "question": "What is the time complexity of the Aho-Corasick algorithm for multiple pattern matching?",
+    "correctOption": "O(n + m + z) where z is number of occurrences",
+    "options": [
+      "O(n * m)",
+      "O((n + m) log(n + m))",
+      "O(n + m + z) where z is number of occurrences",
+      "O(n^2 + m^2)"
+    ],
+    "explanation": "Aho-Corasick builds a trie (O(m)) and searches text (O(n)) with O(z) time for reporting occurrences. Total is O(n + m + z), efficient for multiple patterns."
+
+  },
+  {
+    "question": "What is the time complexity of computing the longest common subsequence using dynamic programming?",
+    "correctOption": "O(m * n)",
+    "options": [
+      "O(m + n)",
+      "O(m * n)",
+      "O(max(m, n))",
+      "O(m log n)"
+    ],
+    "explanation": "LCS DP creates a table of size (m+1) * (n+1) for two strings of length m and n. Each cell requires O(1) computation, resulting in O(m * n)."
+
+  },
+  {
+    "question": "What is the amortized time complexity of dynamic array (vector) insertion?",
+    "correctOption": "O(1) amortized",
+    "options": [
+      "O(1) worst case",
+      "O(n) worst case",
+      "O(1) amortized",
+      "O(log n)"
+    ],
+    "explanation": "Dynamic arrays double their capacity when full. Although individual insertion can be O(n), the amortized cost over many operations is O(1) due to exponential growth."
+
+  },
+  {
+    "question": "What is the time complexity of union operations in a union-find data structure with path compression?",
+    "correctOption": "O(⍺(n)) amortized",
+    "options": [
+      "O(1)",
+      "O(log n)",
+      "O(⍺(n)) amortized",
+      "O(n)"
+    ],
+    "explanation": "Union-find with both path compression and union by rank achieves nearly O(1) amortized time per operation, where ⍺(n) is the inverse Ackermann function (practically constant)."
+
+  },
+  {
+    "question": "What is the time complexity of the Aho-Corasick algorithm for building the failure function?",
+    "correctOption": "O(m) where m is total pattern length",
+    "options": [
+      "O(m^2)",
+      "O(m log m)",
+      "O(m) where m is total pattern length",
+      "O(2^m)"
+    ],
+    "explanation": "Building the trie and failure function for Aho-Corasick takes O(m) time where m is the sum of all pattern lengths. This is linear in the total input size."
+
+  },
+  {
+    "question": "What is the result of repeatedly applying (n & (n-1)) until n becomes 0?",
+    "correctOption": "The number of iterations equals the number of set bits",
+    "options": [
+      "Always equals n/2",
+      "The number of iterations equals the number of set bits",
+      "Equals log_2(n)",
+      "Depends on bit order"
+    ],
+    "explanation": "Each (n & (n-1)) operation removes exactly one set bit. The number of operations needed to reach 0 equals the population count (number of 1-bits) in n."
+
+  },
+  {
+    "question": "What is the time complexity of the Simplex algorithm for linear programming?",
+    "correctOption": "O(2^n) worst case, but polynomial on average",
+    "options": [
+      "O(n^3)",
+      "O(2^n) worst case, but polynomial on average",
+      "O(n^2 log n)",
+      "O(n log n)"
+    ],
+    "explanation": "The Simplex algorithm has exponential worst-case complexity but performs well in practice. Interior point methods guarantee polynomial time, while Simplex is empirically faster."
+
+  },
+  {
+    "question": "What is the time complexity of the Fast Fourier Transform (FFT) algorithm?",
+    "correctOption": "O(n log n)",
+    "options": [
+      "O(n^2)",
+      "O(n log n)",
+      "O(n^3)",
+      "O(log n)"
+    ],
+    "explanation": "FFT recursively divides the problem into halves, creating a tree of depth log n with n operations per level. This results in O(n log n) complexity for polynomial multiplication."
+
+  },
+  {
+    "question": "What is the time complexity of the suffix array construction algorithm (SA-IS)?",
+    "correctOption": "O(n)",
+    "options": [
+      "O(n^2)",
+      "O(n log n)",
+      "O(n)",
+      "O(n log^2 n)"
+    ],
+    "explanation": "The SA-IS (Suffix Array Induced Sorting) algorithm constructs suffix arrays in linear time O(n), which is optimal and matches the theoretical lower bound."
+
+  },
+  {
+    "question": "What is the space complexity of storing all unique subsets of a set with n elements using a bit vector approach?",
+    "correctOption": "O(2^n)",
+    "options": [
+      "O(n)",
+      "O(n^2)",
+      "O(2^n)",
+      "O(n log n)"
+    ],
+    "explanation": "There are 2^n unique subsets of an n-element set. Storing all of them requires O(2^n) space, which is unavoidable for this problem."
+
+  },
+  {
+    "question": "What is the time complexity of checking if a given graph is bipartite using BFS?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V^2)",
+      "O(V + E)",
+      "O(E log V)",
+      "O(V log V)"
+    ],
+    "explanation": "Bipartite checking uses 2-coloring via BFS. Each vertex and edge is visited once, resulting in O(V + E) time complexity."
+
+  },
+  {
+    "question": "What is the time complexity of finding strongly connected components using Tarjan's algorithm?",
+    "correctOption": "O(V + E)",
+    "options": [
+      "O(V^2)",
+      "O(V + E)",
+      "O((V + E) log V)",
+      "O(V log V)"
+    ],
+    "explanation": "Tarjan's algorithm performs DFS once, visiting each vertex and edge exactly once. Time complexity is O(V + E), same as DFS."
+
+  },
+  {
+    "question": "What is the time complexity of computing all transitive closures using Floyd-Warshall?",
+    "correctOption": "O(V^3)",
+    "options": [
+      "O(V + E)",
+      "O(V^2 log V)",
+      "O(V^3)",
+      "O(V^2 + E)"
+    ],
+    "explanation": "Floyd-Warshall computes all-pairs shortest paths and hence transitive closure by running three nested loops over V vertices, resulting in O(V^3)."
+
+  },
+  {
+    "question": "What is the time complexity of the stable marriage problem solution using the Gale-Shapley algorithm?",
+    "correctOption": "O(n^2)",
+    "options": [
+      "O(n)",
+      "O(n^2)",
+      "O(n log n)",
+      "O(n^3)"
+    ],
+    "explanation": "Gale-Shapley algorithm runs up to n rounds, and each round involves O(n) operations for proposals and rejections, resulting in O(n^2) overall complexity."
+
+  },
+  {
+    "question": "What is the relationship between n bits and the maximum integer value that can be represented?",
+    "correctOption": "2^n - 1 for unsigned, 2^(n-1) - 1 for signed",
+    "options": [
+      "n - 1",
+      "2^n - 1 for unsigned, 2^(n-1) - 1 for signed",
+      "n^2",
+      "2^(n+1)"
+    ],
+    "explanation": "With n bits, unsigned integers can represent values 0 to 2^n - 1, giving a maximum of 2^n - 1. Signed integers use one bit for sign, giving range -2^(n-1) to 2^(n-1) - 1."
+
+  }
+]
