@@ -1,4 +1,0 @@
-{
-  "watch": ["src"],
-  "ignore": ["uploads/*", "node_modules/*", ".git/*"]
-}
