@@ -1,0 +1,9 @@
+import mongoose from "mongoose";
+
+const problemCodeSubmissionSchema = new mongoose.Schema({
+    problemId: {
+        type: String,
+        required: true
+    },
+    user
+})
