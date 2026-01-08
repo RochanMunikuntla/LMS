@@ -1,0 +1,272 @@
+[
+  {
+    "question": "What is the time complexity of traversing an array with n elements?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "O(n)",
+        "isCorrect": true,
+        "explanation": "Linear time complexity because we must visit each of the n elements once."
+      },
+      {
+        "option": "O(1)",
+        "isCorrect": false,
+        "explanation": "O(1) is constant time, but traversal requires visiting all elements."
+      },
+      {
+        "option": "O(n^2)",
+        "isCorrect": false,
+        "explanation": "O(n^2) represents nested loops, not a simple array traversal."
+      },
+      {
+        "option": "O(log n)",
+        "isCorrect": false,
+        "explanation": "O(log n) is logarithmic, typical of binary search, not linear traversal."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "Which data structure follows the LIFO (Last In, First Out) principle?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "Queue",
+        "isCorrect": false,
+        "explanation": "Queue follows FIFO (First In, First Out) principle."
+      },
+      {
+        "option": "Stack",
+        "isCorrect": true,
+        "explanation": "Stack is a LIFO data structure where the last element added is removed first."
+      },
+      {
+        "option": "Array",
+        "isCorrect": false,
+        "explanation": "Arrays don't follow LIFO; they allow random access to elements."
+      },
+      {
+        "option": "Linked List",
+        "isCorrect": false,
+        "explanation": "Linked lists don't inherently follow LIFO; they're unordered by default."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "What is the time complexity of binary search on a sorted array?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "O(n)",
+        "isCorrect": false,
+        "explanation": "O(n) is linear search; binary search is more efficient."
+      },
+      {
+        "option": "O(log n)",
+        "isCorrect": true,
+        "explanation": "Binary search divides the search space in half each time, resulting in logarithmic complexity."
+      },
+      {
+        "option": "O(n^2)",
+        "isCorrect": false,
+        "explanation": "O(n^2) would be inefficient for binary search."
+      },
+      {
+        "option": "O(1)",
+        "isCorrect": false,
+        "explanation": "O(1) would mean instant lookup regardless of array size."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "Which sorting algorithm has the best average-case time complexity?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "Bubble Sort",
+        "isCorrect": false,
+        "explanation": "Bubble Sort has O(n^2) average-case complexity."
+      },
+      {
+        "option": "Insertion Sort",
+        "isCorrect": false,
+        "explanation": "Insertion Sort has O(n^2) average-case complexity."
+      },
+      {
+        "option": "Merge Sort",
+        "isCorrect": true,
+        "explanation": "Merge Sort has O(n log n) average-case complexity, making it efficient for large datasets."
+      },
+      {
+        "option": "Selection Sort",
+        "isCorrect": false,
+        "explanation": "Selection Sort has O(n^2) average-case complexity."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "What is the space complexity of a recursive function that calls itself n times?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "O(1)",
+        "isCorrect": false,
+        "explanation": "O(1) would mean constant space; recursion uses call stack space."
+      },
+      {
+        "option": "O(n)",
+        "isCorrect": true,
+        "explanation": "Each recursive call adds a new frame to the call stack, resulting in O(n) space complexity."
+      },
+      {
+        "option": "O(n^2)",
+        "isCorrect": false,
+        "explanation": "O(n^2) space would indicate quadratic growth in memory usage."
+      },
+      {
+        "option": "O(log n)",
+        "isCorrect": false,
+        "explanation": "O(log n) would only occur with tail recursion optimizations or divide-and-conquer approaches."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "In a linked list, what is the time complexity of inserting an element at the beginning?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "O(n)",
+        "isCorrect": false,
+        "explanation": "O(n) would be needed only if we had to traverse the entire list."
+      },
+      {
+        "option": "O(1)",
+        "isCorrect": true,
+        "explanation": "Insertion at the beginning requires only updating pointers, which is constant time."
+      },
+      {
+        "option": "O(log n)",
+        "isCorrect": false,
+        "explanation": "O(log n) would imply a binary search operation."
+      },
+      {
+        "option": "O(n^2)",
+        "isCorrect": false,
+        "explanation": "O(n^2) would indicate nested iterations."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "What does Big O notation primarily measure?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "The worst-case time complexity as input size grows",
+        "isCorrect": true,
+        "explanation": "Big O notation describes how an algorithm's performance scales with increasing input size in the worst case."
+      },
+      {
+        "option": "The exact runtime of an algorithm in seconds",
+        "isCorrect": false,
+        "explanation": "Big O doesn't measure exact runtime; it measures growth rate relative to input size."
+      },
+      {
+        "option": "The best-case scenario for algorithm execution",
+        "isCorrect": false,
+        "explanation": "Big O measures worst-case or average-case, not best-case scenarios."
+      },
+      {
+        "option": "The memory used by a program in kilobytes",
+        "isCorrect": false,
+        "explanation": "Big O can describe space complexity, but not in absolute units like kilobytes."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "Which data structure is best for implementing a priority queue?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "Array",
+        "isCorrect": false,
+        "explanation": "Arrays don't efficiently maintain priority ordering during insertion."
+      },
+      {
+        "option": "Linked List",
+        "isCorrect": false,
+        "explanation": "Linked lists require O(n) traversal to find the correct insertion position."
+      },
+      {
+        "option": "Heap",
+        "isCorrect": true,
+        "explanation": "A heap is a tree-based data structure that efficiently maintains priority ordering with O(log n) insertion."
+      },
+      {
+        "option": "Hash Table",
+        "isCorrect": false,
+        "explanation": "Hash tables are designed for fast lookup, not priority management."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "What is the primary disadvantage of using an array compared to a linked list?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "Arrays cannot store multiple data types",
+        "isCorrect": false,
+        "explanation": "Modern arrays can store multiple data types through generic programming."
+      },
+      {
+        "option": "Fixed size and inefficient insertion/deletion at arbitrary positions",
+        "isCorrect": true,
+        "explanation": "Arrays have fixed memory allocation and require O(n) time for insertion/deletion at intermediate positions."
+      },
+      {
+        "option": "Arrays don't support random access",
+        "isCorrect": false,
+        "explanation": "Arrays are excellent for random access with O(1) lookup time."
+      },
+      {
+        "option": "Arrays consume more memory than linked lists",
+        "isCorrect": false,
+        "explanation": "Arrays typically use less memory per element since they don't need pointer overhead."
+      }
+    ],
+    "marks": 1
+  },
+  {
+    "question": "In a hash table with n elements, what is the average time complexity for a search operation?",
+    "type": "mcq",
+    "options": [
+      {
+        "option": "O(n)",
+        "isCorrect": false,
+        "explanation": "O(n) would occur with poor hash function or many collisions."
+      },
+      {
+        "option": "O(log n)",
+        "isCorrect": false,
+        "explanation": "O(log n) is typical for tree-based structures, not hash tables."
+      },
+      {
+        "option": "O(n^2)",
+        "isCorrect": false,
+        "explanation": "O(n^2) would indicate a severe performance issue in the hash table."
+      },
+      {
+        "option": "O(1)",
+        "isCorrect": true,
+        "explanation": "With a good hash function and low collision rate, average-case search is O(1) constant time."
+      }
+    ],
+    "marks": 1
+  }
+]
