@@ -1,0 +1,782 @@
+[
+  {
+    "title": "Binary Search",
+    "slug": "binary-search",
+    "description": "You are given a sorted array of n integers and a target value. Find the index of the target value in the array using binary search. If the target is not found, return -1.",
+    "inputFormat": "First line contains n (size of array). Second line contains n space-separated integers in sorted order. Third line contains the target value.",
+    "outputFormat": "Print the index (0-based) of the target value. If not found, print -1.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 10^5",
+        "-10^9 <= arr[i] <= 10^9",
+        "Array is sorted in non-decreasing order"
+      ]
+    },
+    "tags": [
+      "binary-search",
+      "searching",
+      "arrays"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5\n1 3 5 7 9\n5",
+        "output": "2",
+        "explanation": "The target value 5 is at index 2.",
+        "hidden" : false
+      },
+      {
+        "input": "6\n2 4 6 8 10 12\n7",
+        "output": "-1",
+        "explanation": "The target value 7 is not in the array.",
+        "hidden" : false
+      },
+      {
+        "input": "4\n10 20 30 40\n10",
+        "output": "0",
+        "explanation": "The target value 10 is at index 0.",
+        "hidden" : false
+      },
+      {
+        "input": "1\n5\n5",
+        "output": "0"
+      },
+      {
+        "input": "7\n1 2 3 4 5 6 7\n7",
+        "output": "6"
+      },
+      {
+        "input": "8\n-10 -5 0 3 7 12 15 20\n12",
+        "output": "5"
+      },
+      {
+        "input": "10\n1 2 3 4 5 6 7 8 9 10\n11",
+        "output": "-1"
+      },
+      {
+        "input": "5\n5 5 5 5 5\n5",
+        "output": "2"
+      },
+      {
+        "input": "9\n-100 -50 -20 0 10 25 50 75 100\n-50",
+        "output": "1"
+      },
+      {
+        "input": "3\n100 200 300\n200",
+        "output": "1"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(log n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Linear Search",
+    "slug": "linear-search",
+    "description": "You are given an unsorted array of n integers and a target value. Find the index of the first occurrence of the target value in the array. If the target is not found, return -1.",
+    "inputFormat": "First line contains n (size of array). Second line contains n space-separated integers. Third line contains the target value.",
+    "outputFormat": "Print the index (0-based) of the first occurrence of the target value. If not found, print -1.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 10^5",
+        "-10^9 <= arr[i] <= 10^9"
+      ]
+    },
+    "tags": [
+      "linear-search",
+      "searching",
+      "arrays"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5\n3 7 2 9 5\n9",
+        "output": "3",
+        "explanation": "The target value 9 is at index 3.",
+        "hidden" : false
+      },
+      {
+        "input": "6\n10 20 30 20 40 50\n20",
+        "output": "1",
+        "explanation": "The first occurrence of 20 is at index 1.",
+        "hidden" : false
+      },
+      {
+        "input": "4\n1 2 3 4\n5",
+        "output": "-1",
+        "explanation": "The target value 5 is not in the array.",
+        "hidden" : false
+      },
+      {
+        "input": "1\n42\n42",
+        "output": "0"
+      },
+      {
+        "input": "7\n5 3 8 5 2 5 9\n5",
+        "output": "0"
+      },
+      {
+        "input": "8\n100 200 300 400 500 600 700 800\n700",
+        "output": "6"
+      },
+      {
+        "input": "10\n1 1 1 1 1 1 1 1 1 1\n1",
+        "output": "0"
+      },
+      {
+        "input": "5\n-5 -10 -15 -20 -25\n-15",
+        "output": "2"
+      },
+      {
+        "input": "6\n9 8 7 6 5 4\n10",
+        "output": "-1"
+      },
+      {
+        "input": "3\n0 0 1\n1",
+        "output": "2"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Prime Number Checker",
+    "slug": "prime-number-checker",
+    "description": "Given a positive integer n, determine whether it is a prime number. A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.",
+    "inputFormat": "A single line containing a positive integer n.",
+    "outputFormat": "Print 'YES' if the number is prime, otherwise print 'NO'.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 10^9"
+      ]
+    },
+    "tags": [
+      "mathematics",
+      "number-theory",
+      "prime"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "7",
+        "output": "YES",
+        "explanation": "7 is a prime number as it has no divisors other than 1 and 7.",
+        "hidden" : false
+      },
+      {
+        "input": "10",
+        "output": "NO",
+        "explanation": "10 is not prime because it is divisible by 2 and 5.",
+        "hidden" : false
+      },
+      {
+        "input": "2",
+        "output": "YES",
+        "explanation": "2 is the smallest prime number.",
+        "hidden" : false
+      },
+      {
+        "input": "1",
+        "output": "NO"
+      },
+      {
+        "input": "97",
+        "output": "YES"
+      },
+      {
+        "input": "100",
+        "output": "NO"
+      },
+      {
+        "input": "13",
+        "output": "YES"
+      },
+      {
+        "input": "121",
+        "output": "NO"
+      },
+      {
+        "input": "17",
+        "output": "YES"
+      },
+      {
+        "input": "1000000007",
+        "output": "YES"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(√n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Find Maximum Element",
+    "slug": "find-maximum-element",
+    "description": "Given an array of n integers, find and return the maximum element in the array.",
+    "inputFormat": "First line contains n (size of array). Second line contains n space-separated integers.",
+    "outputFormat": "Print the maximum element in the array.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 10^5",
+        "-10^9 <= arr[i] <= 10^9"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "implementation"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5\n3 7 2 9 5",
+        "output": "9",
+        "explanation": "The maximum element in the array is 9.",
+        "hidden" : false
+      },
+      {
+        "input": "4\n-5 -2 -8 -1",
+        "output": "-1",
+        "explanation": "Among negative numbers, -1 is the maximum.",
+        "hidden" : false
+      },
+      {
+        "input": "6\n10 10 10 10 10 10",
+        "output": "10",
+        "explanation": "All elements are the same, so maximum is 10.",
+        "hidden" : false
+      },
+      {
+        "input": "1\n42",
+        "output": "42"
+      },
+      {
+        "input": "7\n1 2 3 4 5 6 7",
+        "output": "7"
+      },
+      {
+        "input": "8\n100 50 25 200 75 150 90 180",
+        "output": "200"
+      },
+      {
+        "input": "5\n-100 -50 -25 -75 -90",
+        "output": "-25"
+      },
+      {
+        "input": "10\n5 5 5 5 5 5 5 5 5 6",
+        "output": "6"
+      },
+      {
+        "input": "3\n0 0 0",
+        "output": "0"
+      },
+      {
+        "input": "9\n-1000000000 999999999 -500000000 0 1000000000 -999999999 500000000 -1 1",
+        "output": "1000000000"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Find Minimum Element",
+    "slug": "find-minimum-element",
+    "description": "Given an array of n integers, find and return the minimum element in the array.",
+    "inputFormat": "First line contains n (size of array). Second line contains n space-separated integers.",
+    "outputFormat": "Print the minimum element in the array.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 10^5",
+        "-10^9 <= arr[i] <= 10^9"
+      ]
+    },
+    "tags": [
+      "arrays",
+      "implementation"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5\n3 7 2 9 5",
+        "output": "2",
+        "explanation": "The minimum element in the array is 2.",
+        "hidden" : false
+      },
+      {
+        "input": "4\n-5 -2 -8 -1",
+        "output": "-8",
+        "explanation": "Among negative numbers, -8 is the minimum.",
+        "hidden" : false
+      },
+      {
+        "input": "6\n10 10 10 10 10 10",
+        "output": "10",
+        "explanation": "All elements are the same, so minimum is 10.",
+        "hidden" : false
+      },
+      {
+        "input": "1\n42",
+        "output": "42"
+      },
+      {
+        "input": "7\n7 6 5 4 3 2 1",
+        "output": "1"
+      },
+      {
+        "input": "8\n100 50 25 200 75 150 90 180",
+        "output": "25"
+      },
+      {
+        "input": "5\n-100 -50 -25 -75 -90",
+        "output": "-100"
+      },
+      {
+        "input": "10\n5 5 5 5 5 5 5 5 5 4",
+        "output": "4"
+      },
+      {
+        "input": "3\n0 0 0",
+        "output": "0"
+      },
+      {
+        "input": "9\n-1000000000 999999999 -500000000 0 1000000000 -999999999 500000000 -1 1",
+        "output": "-1000000000"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Reverse a String",
+    "slug": "reverse-a-string",
+    "description": "Given a string, reverse it and print the reversed string. The string may contain letters, digits, spaces, and special characters.",
+    "inputFormat": "A single line containing a string s.",
+    "outputFormat": "Print the reversed string.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= length of s <= 10^5"
+      ]
+    },
+    "tags": [
+      "strings",
+      "implementation"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "hello",
+        "output": "olleh",
+        "explanation": "The reversed string of 'hello' is 'olleh'.",
+        "hidden" : false
+      },
+      {
+        "input": "Hello World",
+        "output": "dlroW olleH",
+        "explanation": "The reversed string with spaces preserved is 'dlroW olleH'.",
+        "hidden" : false
+      },
+      {
+        "input": "12345",
+        "output": "54321",
+        "explanation": "The reversed string of '12345' is '54321'.",
+        "hidden" : false
+      },
+      {
+        "input": "a",
+        "output": "a"
+      },
+      {
+        "input": "racecar",
+        "output": "racecar"
+      },
+      {
+        "input": "The quick brown fox",
+        "output": "xof nworb kciuq ehT"
+      },
+      {
+        "input": "!@#$%",
+        "output": "%$#@!"
+      },
+      {
+        "input": "Programming123",
+        "output": "321gnimmargorP"
+      },
+      {
+        "input": "spaces",
+        "output": "secaps"
+      },
+      {
+        "input": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "output": "ZYXWVUTSRQPONMLKJIHGFEDCBA"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Palindrome Check",
+    "slug": "palindrome-check",
+    "description": "Given a string, determine whether it is a palindrome. A palindrome is a string that reads the same forwards and backwards. Consider only alphanumeric characters and ignore case sensitivity.",
+    "inputFormat": "A single line containing a string s.",
+    "outputFormat": "Print 'YES' if the string is a palindrome, otherwise print 'NO'.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= length of s <= 10^5"
+      ]
+    },
+    "tags": [
+      "strings",
+      "two-pointer"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "racecar",
+        "output": "YES",
+        "explanation": "racecar reads the same forwards and backwards.",
+        "hidden" : false
+      },
+      {
+        "input": "hello",
+        "output": "NO",
+        "explanation": "hello is not a palindrome.",
+        "hidden" : false
+      },
+      {
+        "input": "A man a plan a canal Panama",
+        "output": "YES",
+        "explanation": "Ignoring spaces and case, it reads as 'amanaplanacanalpanama' which is a palindrome.",
+        "hidden" : false
+      },
+      {
+        "input": "a",
+        "output": "YES"
+      },
+      {
+        "input": "madam",
+        "output": "YES"
+      },
+      {
+        "input": "programming",
+        "output": "NO"
+      },
+      {
+        "input": "RaceCar",
+        "output": "YES"
+      },
+      {
+        "input": "Was it a car or a cat I saw",
+        "output": "YES"
+      },
+      {
+        "input": "12321",
+        "output": "YES"
+      },
+      {
+        "input": "12345",
+        "output": "NO"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": false,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Count Vowels and Consonants",
+    "slug": "count-vowels-consonants",
+    "description": "Given a string, count the number of vowels and consonants in it. Vowels are a, e, i, o, u (case-insensitive). Consider only alphabetic characters and ignore spaces, digits, and special characters.",
+    "inputFormat": "A single line containing a string s.",
+    "outputFormat": "Print two space-separated integers: the count of vowels and the count of consonants.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= length of s <= 10^5"
+      ]
+    },
+    "tags": [
+      "strings",
+      "implementation"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "hello",
+        "output": "2 3",
+        "explanation": "Vowels: e, o (count = 2). Consonants: h, l, l (count = 3).",
+        "hidden" : false
+      },
+      {
+        "input": "Programming",
+        "output": "3 8",
+        "explanation": "Vowels: o, a, i (count = 3). Consonants: P, r, g, r, m, m, n, g (count = 8).",
+        "hidden" : false
+      },
+      {
+        "input": "Hello World",
+        "output": "3 7",
+        "explanation": "Vowels: e, o, o (count = 3). Consonants: H, l, l, W, r, l, d (count = 7).",
+        "hidden" : false
+      },
+      {
+        "input": "a",
+        "output": "1 0"
+      },
+      {
+        "input": "bcdfg",
+        "output": "0 5"
+      },
+      {
+        "input": "aeiou",
+        "output": "5 0"
+      },
+      {
+        "input": "The quick brown fox",
+        "output": "5 12"
+      },
+      {
+        "input": "12345!@#",
+        "output": "0 0"
+      },
+      {
+        "input": "AEIOU",
+        "output": "5 0"
+      },
+      {
+        "input": "Education is important",
+        "output": "10 10"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Factorial of a Number",
+    "slug": "factorial-number",
+    "description": "Given a non-negative integer n, calculate and return its factorial. The factorial of n (denoted as n!) is the product of all positive integers less than or equal to n. By definition, 0! = 1.",
+    "inputFormat": "A single line containing a non-negative integer n.",
+    "outputFormat": "Print the factorial of n.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "0 <= n <= 20"
+      ]
+    },
+    "tags": [
+      "mathematics",
+      "recursion",
+      "implementation"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5",
+        "output": "120",
+        "explanation": "5! = 5 * 4 * 3 * 2 * 1 = 120",
+        "hidden" : false
+      },
+      {
+        "input": "0",
+        "output": "1",
+        "explanation": "By definition, 0! = 1",
+        "hidden" : false
+      },
+      {
+        "input": "10",
+        "output": "3628800",
+        "explanation": "10! = 10 * 9 * 8 * ... * 1 = 3628800",
+        "hidden" : false
+      },
+      {
+        "input": "1",
+        "output": "1"
+      },
+      {
+        "input": "3",
+        "output": "6"
+      },
+      {
+        "input": "7",
+        "output": "5040"
+      },
+      {
+        "input": "12",
+        "output": "479001600"
+      },
+      {
+        "input": "15",
+        "output": "1307674368000"
+      },
+      {
+        "input": "20",
+        "output": "2432902008176640000"
+      },
+      {
+        "input": "4",
+        "output": "24"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  },
+  {
+    "title": "Fibonacci Sequence",
+    "slug": "fibonacci-sequence",
+    "description": "Given a non-negative integer n, print the first n numbers of the Fibonacci sequence. The Fibonacci sequence is defined as: F(0) = 0, F(1) = 1, and F(i) = F(i-1) + F(i-2) for i >= 2.",
+    "inputFormat": "A single line containing a non-negative integer n.",
+    "outputFormat": "Print n space-separated integers representing the first n Fibonacci numbers.",
+    "constraints": {
+      "timeLimitMs": 1000,
+      "memoryLimitMB": 256,
+      "inputConstraints": [
+        "1 <= n <= 50"
+      ]
+    },
+    "tags": [
+      "mathematics",
+      "recursion",
+      "dynamic-programming"
+    ],
+    "difficulty": "Easy",
+    "testCases": [
+      {
+        "input": "5",
+        "output": "0 1 1 2 3",
+        "explanation": "The first 5 Fibonacci numbers are 0, 1, 1, 2, 3.",
+        "hidden" : false
+      },
+      {
+        "input": "8",
+        "output": "0 1 1 2 3 5 8 13",
+        "explanation": "The first 8 Fibonacci numbers are 0, 1, 1, 2, 3, 5, 8, 13.",
+        "hidden" : false
+      },
+      {
+        "input": "1",
+        "output": "0",
+        "explanation": "The first Fibonacci number is 0.",
+        "hidden" : false
+      },
+      {
+        "input": "2",
+        "output": "0 1"
+      },
+      {
+        "input": "10",
+        "output": "0 1 1 2 3 5 8 13 21 34"
+      },
+      {
+        "input": "15",
+        "output": "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377"
+      },
+      {
+        "input": "3",
+        "output": "0 1 1"
+      },
+      {
+        "input": "20",
+        "output": "0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610 987 1597 2584 4181"
+      },
+      {
+        "input": "7",
+        "output": "0 1 1 2 3 5 8"
+      },
+      {
+        "input": "12",
+        "output": "0 1 1 2 3 5 8 13 21 34 55 89"
+      }
+    ],
+    "idealComplexity": {
+      "time": "O(n)",
+      "space": "O(1)"
+    },
+    "judge": {
+      "type": "standard",
+      "checker": "default",
+      "caseSensitive": true,
+      "trimOutput": true
+    }
+  }
+]

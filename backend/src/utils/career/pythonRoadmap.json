@@ -1,0 +1,87 @@
+{
+    "contentBlocks": [
+        {
+            "type": "concept_overview",
+            "data": "This topic teaches how to perform a linear search in a Python list. Linear search is a basic algorithm that checks each element in a list sequentially to determine if a target value exists. The learner will write code that iterates through a list, compares each element to the target, and prints the index of the first occurrence if found, or a specific value if the target element is not present in the list."
+        },
+        {
+            "type": "algorithm_explanation",
+            "data": [
+                "The program reads two lines of input: the first line contains space-separated integers representing the list, and the second line contains the integer target value to search for.",
+                "The program iterates through the list, comparing each element to the target value.",
+                "If the target value is found, the program prints the index of its first occurrence and stops searching.",
+                "If the target value is not present in the list, the program prints -1 to indicate that the target element is not present in the list."
+            ]
+        },
+        {
+            "type": "pseudocode",
+            "data": "Read a line of input and split it into a list of integers\nRead the next line of input as the target integer\nFor each index and value in the list:\n    If the value equals the target:\n        Print the index\n        Stop the search\nIf the loop completes without finding the target:\n    Print -1"
+        },
+        {
+            "type": "language_code",
+            "data": {
+                "language": "python",
+                "code": "lst = list(map(int, input().split()))\ntarget = int(input())\nfor i, val in enumerate(lst):\n    if val == target:\n        print(i)\n        break\nelse:\n    print(-1)"
+            }
+        },
+        {
+            "type": "edge_cases",
+            "data": [
+                "The input list contains no elements, so the program prints -1 to indicate that the target element is not present in the list.",
+                "The target value appears multiple times in the list, so the program prints the index of its first occurrence.",
+                "The target value is the first element in the list, so the program prints 0.",
+                "The target value is the last element in the list, so the program prints the index corresponding to the last position."
+            ]
+        },
+        {
+            "type": "constraints",
+            "data": [
+                "The input list may contain zero or more integers.",
+                "The target value is a single integer.",
+                "The program must print only the index of the first occurrence of the target value, or -1 if the target element is not present in the list.",
+                "All output must be produced using the print() function."
+            ]
+        },
+        {
+            "type": "complexity",
+            "data": {
+                "time": "O(n), where n is the number of elements in the list, because each element may need to be checked once.",
+                "space": "O(1), excluding the space required to store the input list, since only a constant amount of additional memory is used."
+            }
+        }
+    ],
+    "sampleTestCases": [
+        {
+            "input": "3 8 2 7 5\n7\n",
+            "output": "3\n",
+            "explanation": "The list is [3, 8, 2, 7, 5] and the target value is 7. The target value 7 is found at index 3, so the program prints 3."
+        },
+        {
+            "input": "\n4\n",
+            "output": "-1\n",
+            "explanation": "The input list is empty and the target value is 4. Since the list contains no elements, the program prints -1 to indicate that the target element is not present in the list."
+        }
+    ],
+    "executionTestCases": [
+        {
+            "input": "1 2 3 4 5\n2\n",
+            "expectedOutput": "1\n"
+        },
+        {
+            "input": "10 20 30 40 50\n60\n",
+            "expectedOutput": "-1\n"
+        },
+        {
+            "input": "5 5 5 5 5\n5\n",
+            "expectedOutput": "0\n"
+        },
+        {
+            "input": "9\n9\n",
+            "expectedOutput": "0\n"
+        },
+        {
+            "input": "\n1\n",
+            "expectedOutput": "-1\n"
+        }
+    ]
+}

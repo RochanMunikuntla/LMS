@@ -1,0 +1,642 @@
+{
+    "tags": [
+        
+            {
+                "name": "Actix",
+                "category": "Framework"
+            },
+            {
+                "name": "Algolia",
+                "category": "Search"
+            },
+            {
+                "name": "Angular",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Ansible",
+                "category": "DevOps"
+            },
+            {
+                "name": "Apache Kafka",
+                "category": "Data Processing"
+            },
+            {
+                "name": "Apache Spark",
+                "category": "Data Processing"
+            },
+            {
+                "name": "Astro",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Auth0",
+                "category": "Authentication"
+            },
+            {
+                "name": "AWS",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Axum",
+                "category": "Framework"
+            },
+            {
+                "name": "Azure",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Babel",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Bitbucket",
+                "category": "Version Control"
+            },
+            {
+                "name": "Bootstrap",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "Bulma",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "C",
+                "category": "Programming Language"
+            },
+            {
+                "name": "C#",
+                "category": "Programming Language"
+            },
+            {
+                "name": "C++",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Cassandra",
+                "category": "Database"
+            },
+            {
+                "name": "Celery",
+                "category": "Message Queue"
+            },
+            {
+                "name": "Chakra UI",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "CircleCI",
+                "category": "DevOps"
+            },
+            {
+                "name": "Clojure",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Cloudflare",
+                "category": "CDN"
+            },
+            {
+                "name": "CloudFront",
+                "category": "CDN"
+            },
+            {
+                "name": "CockroachDB",
+                "category": "Database"
+            },
+            {
+                "name": "Crystal",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Cypress",
+                "category": "Testing"
+            },
+            {
+                "name": "Dart",
+                "category": "Programming Language"
+            },
+            {
+                "name": "dbt",
+                "category": "Data Processing"
+            },
+            {
+                "name": "Deno",
+                "category": "Runtime"
+            },
+            {
+                "name": "DigitalOcean",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Django",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "Docker",
+                "category": "DevOps"
+            },
+            {
+                "name": "DynamoDB",
+                "category": "Database"
+            },
+            {
+                "name": "Elasticsearch",
+                "category": "Database"
+            },
+            {
+                "name": "Electron",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Elixir",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Ember.js",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Erlang",
+                "category": "Programming Language"
+            },
+            {
+                "name": "ESLint",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Express.js",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "FastAPI",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "Firebase",
+                "category": "Database"
+            },
+            {
+                "name": "Flask",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "Flutter",
+                "category": "Mobile Development"
+            },
+            {
+                "name": "Gatsby",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Git",
+                "category": "Version Control"
+            },
+            {
+                "name": "GitHub",
+                "category": "Version Control"
+            },
+            {
+                "name": "GitHub Actions",
+                "category": "DevOps"
+            },
+            {
+                "name": "GitLab",
+                "category": "Version Control"
+            },
+            {
+                "name": "GitLab CI/CD",
+                "category": "DevOps"
+            },
+            {
+                "name": "Go",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Google Cloud",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "GraphQL",
+                "category": "API"
+            },
+            {
+                "name": "Groovy",
+                "category": "Programming Language"
+            },
+            {
+                "name": "gRPC",
+                "category": "API"
+            },
+            {
+                "name": "Hardhat",
+                "category": "Web3"
+            },
+            {
+                "name": "Haskell",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Heroku",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "HTMX",
+                "category": "Frontend Tool"
+            },
+            {
+                "name": "Hugging Face",
+                "category": "ML/AI"
+            },
+            {
+                "name": "IBM Cloud",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Ionic",
+                "category": "Mobile Development"
+            },
+            {
+                "name": "Java",
+                "category": "Programming Language"
+            },
+            {
+                "name": "JavaScript",
+                "category": "Programming Language"
+            },
+            {
+                "name": "JAX",
+                "category": "ML/AI"
+            },
+            {
+                "name": "Jenkins",
+                "category": "DevOps"
+            },
+            {
+                "name": "Jest",
+                "category": "Testing"
+            },
+            {
+                "name": "Jotai",
+                "category": "State Management"
+            },
+            {
+                "name": "JWT",
+                "category": "Authentication"
+            },
+            {
+                "name": "Keras",
+                "category": "ML/AI"
+            },
+            {
+                "name": "Kotlin",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Kubernetes",
+                "category": "DevOps"
+            },
+            {
+                "name": "LangChain",
+                "category": "ML/AI"
+            },
+            {
+                "name": "LaTeX",
+                "category": "Document Preparation"
+            },
+            {
+                "name": "Linode",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Lisp",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Lua",
+                "category": "Programming Language"
+            },
+            {
+                "name": "MariaDB",
+                "category": "Database"
+            },
+            {
+                "name": "Markdown",
+                "category": "Document Processing"
+            },
+            {
+                "name": "Materialize",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "Memcached",
+                "category": "Caching"
+            },
+            {
+                "name": "MobX",
+                "category": "State Management"
+            },
+            {
+                "name": "Mocha",
+                "category": "Testing"
+            },
+            {
+                "name": "MongoDB",
+                "category": "Database"
+            },
+            {
+                "name": "MQ",
+                "category": "Message Queue"
+            },
+            {
+                "name": "MySQL",
+                "category": "Database"
+            },
+            {
+                "name": "Neo4j",
+                "category": "Database"
+            },
+            {
+                "name": "Nest.js",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "Next.js",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Nginx",
+                "category": "DevOps"
+            },
+            {
+                "name": "Node.js",
+                "category": "Runtime"
+            },
+            {
+                "name": "npm",
+                "category": "Package Manager"
+            },
+            {
+                "name": "Nuxt.js",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "OAuth",
+                "category": "Authentication"
+            },
+            {
+                "name": "OpenAI API",
+                "category": "ML/AI"
+            },
+            {
+                "name": "OpenGL",
+                "category": "Graphics"
+            },
+            {
+                "name": "Oracle",
+                "category": "Database"
+            },
+            {
+                "name": "Pandas",
+                "category": "Data Processing"
+            },
+            {
+                "name": "Parcel",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Passport.js",
+                "category": "Authentication"
+            },
+            {
+                "name": "PDF.js",
+                "category": "Document Processing"
+            },
+            {
+                "name": "PHP",
+                "category": "Programming Language"
+            },
+            {
+                "name": "pip",
+                "category": "Package Manager"
+            },
+            {
+                "name": "Playwright",
+                "category": "Testing"
+            },
+            {
+                "name": "Polars",
+                "category": "Data Processing"
+            },
+            {
+                "name": "PostgreSQL",
+                "category": "Database"
+            },
+            {
+                "name": "Prettier",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "Pytest",
+                "category": "Testing"
+            },
+            {
+                "name": "Python",
+                "category": "Programming Language"
+            },
+            {
+                "name": "PyTorch",
+                "category": "ML/AI"
+            },
+            {
+                "name": "R",
+                "category": "Programming Language"
+            },
+            {
+                "name": "RabbitMQ",
+                "category": "Message Queue"
+            },
+            {
+                "name": "React",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "React Native",
+                "category": "Mobile Development"
+            },
+            {
+                "name": "Recoil",
+                "category": "State Management"
+            },
+            {
+                "name": "Redis",
+                "category": "Database"
+            },
+            {
+                "name": "Redis Queue",
+                "category": "Message Queue"
+            },
+            {
+                "name": "Redux",
+                "category": "State Management"
+            },
+            {
+                "name": "REST API",
+                "category": "API"
+            },
+            {
+                "name": "Ruby",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Rust",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Sass",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "Scala",
+                "category": "Programming Language"
+            },
+            {
+                "name": "scikit-learn",
+                "category": "ML/AI"
+            },
+            {
+                "name": "Selenium",
+                "category": "Testing"
+            },
+            {
+                "name": "Snowflake",
+                "category": "Database"
+            },
+            {
+                "name": "Socket.io",
+                "category": "API"
+            },
+            {
+                "name": "Solid.js",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Solidity",
+                "category": "Web3"
+            },
+            {
+                "name": "Solr",
+                "category": "Search"
+            },
+            {
+                "name": "Spring Boot",
+                "category": "Backend Framework"
+            },
+            {
+                "name": "SQLite",
+                "category": "Database"
+            },
+            {
+                "name": "Styled Components",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "Supabase",
+                "category": "Database"
+            },
+            {
+                "name": "Svelte",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Swift",
+                "category": "Programming Language"
+            },
+            {
+                "name": "SwiftUI",
+                "category": "Mobile Development"
+            },
+            {
+                "name": "Tailwind CSS",
+                "category": "CSS Framework"
+            },
+            {
+                "name": "TensorFlow",
+                "category": "ML/AI"
+            },
+            {
+                "name": "Terraform",
+                "category": "DevOps"
+            },
+            {
+                "name": "Three.js",
+                "category": "Graphics"
+            },
+            {
+                "name": "Travis CI",
+                "category": "DevOps"
+            },
+            {
+                "name": "Truffle",
+                "category": "Web3"
+            },
+            {
+                "name": "TypeScript",
+                "category": "Programming Language"
+            },
+            {
+                "name": "Vercel",
+                "category": "Cloud Platform"
+            },
+            {
+                "name": "Vite",
+                "category": "Build Tool"
+            },
+            {
+                "name": "Vitest",
+                "category": "Testing"
+            },
+            {
+                "name": "Vue.js",
+                "category": "Frontend Framework"
+            },
+            {
+                "name": "Web3.js",
+                "category": "Web3"
+            },
+            {
+                "name": "WebAssembly",
+                "category": "Runtime"
+            },
+            {
+                "name": "Webpack",
+                "category": "Frontend Utilities"
+            },
+            {
+                "name": "WebSocket",
+                "category": "API"
+            },
+            {
+                "name": "Xamarin",
+                "category": "Mobile Development"
+            },
+            {
+                "name": "XGBoost",
+                "category": "ML/AI"
+            },
+            {
+                "name": "yarn",
+                "category": "Package Manager"
+            },
+            {
+                "name": "Zod",
+                "category": "Validation"
+            },
+            {
+                "name": "Zustand",
+                "category": "State Management"
+            }
+        
+    ]
+}

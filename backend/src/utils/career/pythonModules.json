@@ -1,0 +1,80 @@
+{
+    "Variables and Data Types": [
+        "Variables in Python",
+        "Integer and Floating Point Numbers",
+        "Strings in Python",
+        "Boolean Values",
+        "Type Conversion"
+    ],
+    "Basic Input and Output": [
+        "Printing Output Using print",
+        "Reading Input Using input",
+        "Type Conversion of Input Values",
+        "Formatting Output"
+    ],
+    "Operators and Expressions": [
+        "Arithmetic Operators",
+        "Comparison Operators",
+        "Logical Operators",
+        "Assignment Operators",
+        "Operator Precedence"
+    ],
+    "Control Flow": [
+        "If Statements",
+        "If-Else and Elif Chains",
+        "Nested Conditions",
+        "For Loops",
+        "While Loops",
+        "Break and Continue"
+    ],
+    "Functions": [
+        "Defining Functions",
+        "Function Parameters and Arguments",
+        "Return Statements",
+        "Default Parameters",
+        "Scope of Variables"
+    ],
+    "Lists": [
+        "Introduction to Lists",
+        "Accessing List Elements",
+        "Iterating Over Lists",
+        "List Methods",
+        "Common List Operations"
+    ],
+    "Tuples and Sets": [
+        "Tuples in Python",
+        "Tuple Operations",
+        "Sets in Python",
+        "Set Operations"
+    ],
+    "Dictionaries": [
+        "Introduction to Dictionaries",
+        "Accessing Dictionary Values",
+        "Iterating Over Dictionaries",
+        "Dictionary Methods",
+        "Common Dictionary Use Cases"
+    ],
+    "Strings": [
+        "String Indexing and Slicing",
+        "String Methods",
+        "Formatting Strings",
+        "Common String Operations"
+    ],
+    "Basic Problem Solving with Collections": [
+        "Linear Search in a List",
+        "Finding Maximum and Minimum Elements in a List",
+        "Counting Frequency of Elements Using a Dictionary",
+        "Finding the First Non-Repeating Element",
+        "Removing Duplicate Elements Using a Set",
+        "Finding Common Elements Between Two Lists",
+        "Accessing and Printing Elements of a Tuple",
+        "Finding the Length and Maximum Element in a Tuple"
+    ],
+    "Introduction to Object-Oriented Programming": [
+        "What is Object-Oriented Programming",
+        "Classes and Objects",
+        "The __init__ Method",
+        "Instance Variables",
+        "Methods in a Class"
+    ]
+}
